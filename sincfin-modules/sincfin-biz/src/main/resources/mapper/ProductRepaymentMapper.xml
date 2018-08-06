@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.product.mapper.ProductRepaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.ProductRepaymentEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="gmt_expected_repayment" property="gmtExpectedRepayment" jdbcType="TIMESTAMP" />
+    <result column="gmt_repayment" property="gmtRepayment" jdbcType="TIMESTAMP" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="principal" property="principal" jdbcType="BIGINT" />
+    <result column="interest" property="interest" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, product_id, gmt_expected_repayment, gmt_repayment, 
+    amount, principal, interest, type, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_repayment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.ProductRepaymentEntity" >
+    insert into t_product_repayment (id, gmt_create, gmt_modified, 
+      deleted_flag, product_id, gmt_expected_repayment, 
+      gmt_repayment, amount, type, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{productId,jdbcType=BIGINT}, #{gmtExpectedRepayment,jdbcType=TIMESTAMP}, 
+      #{gmtRepayment,jdbcType=TIMESTAMP}, #{amount,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.ProductRepaymentEntity" >
+    insert into t_product_repayment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="gmtExpectedRepayment != null" >
+        gmt_expected_repayment,
+      </if>
+      <if test="gmtRepayment != null" >
+        gmt_repayment,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtExpectedRepayment != null" >
+        #{gmtExpectedRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtRepayment != null" >
+        #{gmtRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.ProductRepaymentEntity" >
+    update t_product_repayment
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtExpectedRepayment != null" >
+        gmt_expected_repayment = #{gmtExpectedRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtRepayment != null" >
+        gmt_repayment = #{gmtRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.ProductRepaymentEntity" >
+    update t_product_repayment
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      product_id = #{productId,jdbcType=BIGINT},
+      gmt_expected_repayment = #{gmtExpectedRepayment,jdbcType=TIMESTAMP},
+      gmt_repayment = #{gmtRepayment,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=BIGINT},
+      principal = #{principal,jdbcType=BIGINT},
+      interest = #{interest,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.ProductRepaymentDto"
+          parameterType="com.ruixun.sincfin.domain.query.ProductRepaymentQuery" >
+    select pr.id, pr.gmt_create, pr.product_id, pr.gmt_expected_repayment, pr.gmt_repayment,
+      pr.amount, pr.type, pr.status, p.title as product_title
+    from t_product_repayment pr left join t_product p
+    on pr.product_id = p.id
+    where pr.deleted_flag = 0
+    <if test="productId != null">
+      and pr.product_id = #{productId}
+    </if>
+    <if test="productTitle != null and productTitle !=''">
+      and p.title = #{productTitle}
+    </if>
+    <if test="gmtStartExpectedRepayment != null">
+      and pr.gmt_expected_repayment >= #{gmtStartExpectedRepayment}
+    </if>
+    <if test="gmtEndExpectedRepayment != null">
+      and pr.gmt_expected_repayment &lt; #{gmtEndExpectedRepayment}
+    </if>
+    <if test="gmtStartRepayment != null">
+      and pr.gmt_repayment >= #{gmtStartRepayment}
+    </if>
+    <if test="gmtEndRepayment != null">
+      and pr.gmt_repayment &lt; #{gmtEndRepayment}
+    </if>
+    <if test="type != null and type !=''">
+      and pr.type = #{type}
+    </if>
+    <if test="status != null and status !=''">
+      and pr.status = #{status}
+    </if>
+    order by pr.id desc
+  </select>
+
+  <select id="getByProductId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+      <include refid="Base_Column_List" />
+    from t_product_repayment
+    where deleted_flag = 0 and product_id = #{productId}
+    order by id desc
+    limit 0,1
+  </select>
+
+</mapper>

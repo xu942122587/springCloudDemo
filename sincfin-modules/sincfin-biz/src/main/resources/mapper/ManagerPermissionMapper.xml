@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.manager.mapper.ManagerPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.ManagerPermissionEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="node_level" property="nodeLevel" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, title, type, url,
+    parent_id, node_level, path, sort_no, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_manager_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.ManagerPermissionEntity" >
+    insert into t_manager_permission (id, gmt_create, gmt_modified, 
+      deleted_flag, title, type,
+      url, status)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+      #{url,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.ManagerPermissionEntity" >
+    insert into t_manager_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.ManagerPermissionEntity" >
+    update t_manager_permission
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.ManagerPermissionEntity" >
+    update t_manager_permission
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listMenu" resultType="com.ruixun.sincfin.domain.dto.ManagerPermissionDto">
+    select
+      <include refid="Base_Column_List" />
+    from t_manager_permission
+    where status = 'enabled' and type = 'menu'
+    order by node_level asc, parent_id asc, sort_no asc
+  </select>
+
+    <select id="listByManagerUserId"
+            resultType="com.ruixun.sincfin.domain.dto.ManagerPermissionDto">
+        select mp.id, mp.title, mp.type, mp.icon, mp.url, mp.parent_id
+        from t_manager_user mu
+            right join t_manager_role_permission mrp on mu.role_id = mrp.role_id
+            left join t_manager_permission mp on mrp.permission_id = mp.id
+        where mu.deleted_flag = 0 and mrp.deleted_flag = 0 and mp.deleted_flag = 0
+          and mp.status = 'enabled' and mu.id = #{managerUserId}
+        <if test="type != null and type != ''" >
+            and mp.type = #{type}
+        </if>
+    </select>
+
+    <select id="listByRoleId"
+            resultType="com.ruixun.sincfin.domain.dto.ManagerPermissionDto">
+      select mp.id, mp.title, mp.type, mp.icon, mp.url, mp.parent_id
+      from t_manager_role_permission mrp
+        left join t_manager_permission mp on mrp.permission_id = mp.id
+      where mrp.deleted_flag = 0 and mp.deleted_flag = 0
+        and mp.status = 'enabled'
+        and mrp.role_id = #{roleId}
+      <if test="type != null and type != ''" >
+        and mp.type = #{type}
+      </if>
+    </select>
+
+    <select id="listActionByParent" resultType="com.ruixun.sincfin.domain.dto.ManagerPermissionDto">
+      select
+        <include refid="Base_Column_List" />
+      from t_manager_permission
+      where status = 'enabled' and type = 'action'
+        and parent_id in
+        <foreach collection="parentIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+    </select>
+
+</mapper>

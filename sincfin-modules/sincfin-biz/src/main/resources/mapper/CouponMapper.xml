@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.coupon.mapper.CouponMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.CouponEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="bonus_type" property="bonusType"
+			jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="trigger_condition" property="triggerCondition"
+			jdbcType="VARCHAR" />
+		<result column="validity_period_type"
+			property="validityPeriodType" jdbcType="VARCHAR" />
+		<result column="gmt_validity_start" property="gmtValidityStart"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_validity_end" property="gmtValidityEnd"
+			jdbcType="TIMESTAMP" />
+		<result column="fixed_days" property="fixedDays"
+			jdbcType="INTEGER" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="product_type_list" property="productTypeList"
+			jdbcType="VARCHAR" />
+		<result column="limit_price" property="limitPrice"
+			jdbcType="BIGINT" />
+		<result column="limit_days" property="limitDays"
+			jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, type,
+		bonus_type, name,
+		trigger_condition,
+		validity_period_type,
+		gmt_validity_start, gmt_validity_end, fixed_days, amount,
+		product_type_list,
+		limit_price, limit_days, remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_coupon
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponEntity">
+		insert into t_coupon (id, gmt_create, gmt_modified,
+		deleted_flag, type, bonus_type,
+		name, trigger_condition,
+		validity_period_type,
+		gmt_validity_start, gmt_validity_end, fixed_days,
+		amount, product_type_list, limit_price,
+		limit_days, remark)
+		values
+		(#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT},
+		#{type,jdbcType=VARCHAR}, #{bonusType,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{triggerCondition,jdbcType=VARCHAR},
+		#{validityPeriodType,jdbcType=VARCHAR},
+		#{gmtValidityStart,jdbcType=TIMESTAMP},
+		#{gmtValidityEnd,jdbcType=TIMESTAMP}, #{fixedDays,jdbcType=INTEGER},
+		#{amount,jdbcType=BIGINT}, #{productTypeList,jdbcType=VARCHAR},
+		#{limitPrice,jdbcType=BIGINT},
+		#{limitDays,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponEntity">
+		insert into t_coupon
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="bonusType != null">
+				bonus_type,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="triggerCondition != null">
+				trigger_condition,
+			</if>
+			<if test="validityPeriodType != null">
+				validity_period_type,
+			</if>
+			<if test="gmtValidityStart != null">
+				gmt_validity_start,
+			</if>
+			<if test="gmtValidityEnd != null">
+				gmt_validity_end,
+			</if>
+			<if test="fixedDays != null">
+				fixed_days,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="productTypeList != null">
+				product_type_list,
+			</if>
+			<if test="limitPrice != null">
+				limit_price,
+			</if>
+			<if test="limitDays != null">
+				limit_days,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="bonusType != null">
+				#{bonusType,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="triggerCondition != null">
+				#{triggerCondition,jdbcType=VARCHAR},
+			</if>
+			<if test="validityPeriodType != null">
+				#{validityPeriodType,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtValidityStart != null">
+				#{gmtValidityStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValidityEnd != null">
+				#{gmtValidityEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fixedDays != null">
+				#{fixedDays,jdbcType=INTEGER},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="productTypeList != null">
+				#{productTypeList,jdbcType=VARCHAR},
+			</if>
+			<if test="limitPrice != null">
+				#{limitPrice,jdbcType=BIGINT},
+			</if>
+			<if test="limitDays != null">
+				#{limitDays,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponEntity">
+		update t_coupon
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="bonusType != null">
+				bonus_type = #{bonusType,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="triggerCondition != null">
+				trigger_condition = #{triggerCondition,jdbcType=VARCHAR},
+			</if>
+			<if test="validityPeriodType != null">
+				validity_period_type =
+				#{validityPeriodType,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtValidityStart != null">
+				gmt_validity_start =
+				#{gmtValidityStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValidityEnd != null">
+				gmt_validity_end = #{gmtValidityEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fixedDays != null">
+				fixed_days = #{fixedDays,jdbcType=INTEGER},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="productTypeList != null">
+				product_type_list = #{productTypeList,jdbcType=VARCHAR},
+			</if>
+			<if test="limitPrice != null">
+				limit_price = #{limitPrice,jdbcType=BIGINT},
+			</if>
+			<if test="limitDays != null">
+				limit_days = #{limitDays,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponEntity">
+		update t_coupon
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		type = #{type,jdbcType=VARCHAR},
+		bonus_type = #{bonusType,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
+		trigger_condition =
+		#{triggerCondition,jdbcType=VARCHAR},
+		validity_period_type =
+		#{validityPeriodType,jdbcType=VARCHAR},
+		gmt_validity_start =
+		#{gmtValidityStart,jdbcType=TIMESTAMP},
+		gmt_validity_end =
+		#{gmtValidityEnd,jdbcType=TIMESTAMP},
+		fixed_days =
+		#{fixedDays,jdbcType=INTEGER},
+		amount = #{amount,jdbcType=BIGINT},
+		product_type_list = #{productTypeList,jdbcType=VARCHAR},
+		limit_price =
+		#{limitPrice,jdbcType=BIGINT},
+		limit_days =
+		#{limitDays,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="listByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.CouponDto"
+		parameterType="com.ruixun.sincfin.domain.query.CouponQuery">
+		select
+		c.id, c.gmt_create, c.type, c.bonus_type, c.name,
+		c.trigger_condition,
+		c.validity_period_type, c.gmt_validity_start,
+		c.gmt_validity_end,
+		c.fixed_days,
+		c.amount, c.product_type_list,
+		c.limit_price, c.limit_days, c.remark,
+		rqcu.receive_quantity,
+		uqcu.used_quantity
+		from t_coupon c
+		left join (
+		select coupon_id,
+		count(coupon_id) as receive_quantity
+		from t_coupon_user
+		where
+		deleted_flag = 0
+		group by coupon_id
+		) rqcu on c.id = rqcu.coupon_id
+		left
+		join (
+		select coupon_id, count(coupon_id) as used_quantity
+		from
+		t_coupon_user
+		where deleted_flag = 0 and status = 'used'
+		group by
+		coupon_id
+		) uqcu on c.id = uqcu.coupon_id
+		where c.deleted_flag = 0
+		<if test="name != null and name != ''">
+			and c.name like concat('%',#{name},'%')
+		</if>
+		<if test="type != null and type != ''">
+			and c.type = #{type}
+		</if>
+		<if test="bonusType != null and bonusType != ''">
+			and c.bonus_type = #{bonusType}
+		</if>
+		order by c.id desc
+	</select>
+
+	<select id="selectByQuery"
+		resultType="com.ruixun.sincfin.domain.dto.CouponDto"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponEntity">
+		select
+		<include refid="Base_Column_List" />
+		from t_coupon where deleted_flag = 0
+		<if test="name != null and name != ''">
+			and name like concat('%',#{name},'%')
+		</if>
+		<if test="type != null and type != ''">
+			and type = #{type}
+		</if>
+		<if test="triggerCondition != null and triggerCondition != ''">
+			and trigger_condition = #{triggerCondition}
+		</if>
+
+		<if test="bonusType != null and bonusType != ''">
+			and bonus_type = #{bonusType}
+		</if>
+		order by id desc
+
+
+	</select>
+
+	<select id="getStatisticsCoupon"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsCouponDto">
+		select count(oc.id) as use_count,
+		ifnull(sum(oc.bonus_amount), 0) as use_bonus_amount,
+		ifnull(sum(o.amount), 0) as order_amount
+		from t_order_coupon oc
+		left
+		join t_order o on oc.order_num = o.order_num
+		where oc.deleted_flag = 0
+		and o.deleted_flag = 0
+		and (o.status = 'payment_success' or o.status =
+		'repayment')
+	</select>
+
+	<select id="getStatisticsCouponById"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsCouponDto">
+		select c.id as coupon_id, c.name as coupon_name, c.amount
+		as bonus_amount,
+		count(oc.id) as use_count,
+		ifnull(sum(oc.bonus_amount), 0) as use_bonus_amount,
+		ifnull(sum(o.amount), 0) as order_amount
+		from t_coupon c
+		left join
+		t_order_coupon oc on oc.coupon_id = c.id
+		left join t_order o on
+		oc.order_num = o.order_num
+		where oc.deleted_flag = 0 and o.deleted_flag
+		= 0
+		and (o.status = 'payment_success' or o.status = 'repayment')
+		and
+		c.id = #{couponId}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.product.mapper.ProductMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.ProductEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="contract_id" property="contractId"
+			jdbcType="BIGINT" />
+		<result column="repayment_type" property="repaymentType"
+			jdbcType="VARCHAR" />
+		<result column="financing_user_id" property="financingUserId"
+			jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="product_type_id" property="productTypeId"
+			jdbcType="BIGINT" />
+		<result column="product_label_id" property="productLabelId"
+			jdbcType="BIGINT" />
+		<result column="total_interest_rate"
+			property="totalInterestRate" jdbcType="DECIMAL" />
+		<result column="original_interest_rate"
+			property="originalInterestRate" jdbcType="DECIMAL" />
+		<result column="subsidy_interest_rate"
+			property="subsidyInterestRate" jdbcType="DECIMAL" />
+		<result column="time_limit" property="timeLimit"
+			jdbcType="INTEGER" />
+		<result column="value_date_method" property="valueDateMethod"
+			jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="sold_amount" property="soldAmount"
+			jdbcType="BIGINT" />
+		<result column="unsold_amount" property="unsoldAmount"
+			jdbcType="BIGINT" />
+		<result column="amount_min" property="amountMin"
+			jdbcType="BIGINT" />
+		<result column="amount_max" property="amountMax"
+			jdbcType="BIGINT" />
+		<result column="security_level" property="securityLevel"
+			jdbcType="INTEGER" />
+		<result column="presell_flag" property="presellFlag"
+			jdbcType="BIT" />
+		<result column="gmt_release" property="gmtRelease"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_value_date" property="gmtValueDate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_expiration_date"
+			property="gmtExpirationDate" jdbcType="TIMESTAMP" />
+		<result column="gmt_sell_out" property="gmtSellOut"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ProductDtoMap"
+		type="com.ruixun.sincfin.domain.dto.ProductDto">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="contract_id" property="contractId"
+			jdbcType="BIGINT" />
+		<result column="financing_user_id" property="financingUserId"
+			jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="product_type_id" property="productTypeId"
+			jdbcType="BIGINT" />
+		<result column="product_type_code" property="productTypeCode"
+			jdbcType="VARCHAR" />
+		<result column="product_type_name" property="productTypeName"
+			jdbcType="VARCHAR" />
+		<result column="product_label_id" property="productLabelId"
+			jdbcType="BIGINT" />
+		<result column="product_label_name" property="productLabelName"
+			jdbcType="VARCHAR" />
+		<result column="total_interest_rate"
+			property="totalInterestRate" jdbcType="DECIMAL" />
+		<result column="original_interest_rate"
+			property="originalInterestRate" jdbcType="DECIMAL" />
+		<result column="subsidy_interest_rate"
+			property="subsidyInterestRate" jdbcType="DECIMAL" />
+		<result column="time_limit" property="timeLimit"
+			jdbcType="INTEGER" />
+		<result column="value_date_method" property="valueDateMethod"
+			jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="sold_amount" property="soldAmount"
+			jdbcType="BIGINT" />
+		<result column="unsold_amount" property="unsoldAmount"
+			jdbcType="BIGINT" />
+		<result column="amount_min" property="amountMin"
+			jdbcType="BIGINT" />
+		<result column="amount_max" property="amountMax"
+			jdbcType="BIGINT" />
+		<result column="security_level" property="securityLevel"
+			jdbcType="INTEGER" />
+		<result column="presell_flag" property="presellFlag"
+			jdbcType="BIT" />
+		<result column="gmt_release" property="gmtRelease"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_value_date" property="gmtValueDate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_expiration_date"
+			property="gmtExpirationDate" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, contract_id,
+		repayment_type, financing_user_id, title,
+		product_type_id,
+		product_label_id, total_interest_rate, original_interest_rate ,
+		subsidy_interest_rate, time_limit,
+		value_date_method, amount,
+		sold_amount, unsold_amount, amount_min, amount_max, security_level,
+		presell_flag, gmt_release, gmt_value_date, gmt_expiration_date,
+		gmt_sell_out, status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_product
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductEntity">
+		insert into t_product (id, gmt_create, gmt_modified,
+		deleted_flag, contract_id, financing_user_id,
+		title, product_type_id, product_label_id,
+		total_interest_rate, original_interest_rate ,subsidy_interest_rate,
+		time_limit, value_date_method, amount, sold_amount, unsold_amount,
+		amount_min, amount_max,
+		security_level, presell_flag, gmt_release,
+		gmt_value_date, gmt_expiration_date, status
+		)
+		values (#{id,jdbcType=BIGINT},
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{contractId,jdbcType=BIGINT},
+		#{financingUserId,jdbcType=BIGINT},
+		#{title,jdbcType=VARCHAR},
+		#{productTypeId,jdbcType=BIGINT},
+		#{productLabelId,jdbcType=BIGINT},
+		#{totalInterestRate,jdbcType=DECIMAL},#{originalInterestRate,jdbcType=DECIMAL},
+		#{subsidyInterestRate,jdbcType=DECIMAL},
+		#{timeLimit,jdbcType=INTEGER}, #{valueDateMethod,jdbcType=VARCHAR},
+		#{amount,jdbcType=BIGINT}, #{soldAmount,jdbcType=BIGINT},
+		#{unsoldAmount,jdbcType=BIGINT},
+		#{amountMin,jdbcType=BIGINT},
+		#{amountMax,jdbcType=BIGINT},
+		#{securityLevel,jdbcType=INTEGER},
+		#{presellFlag,jdbcType=BIT}, #{gmtRelease,jdbcType=TIMESTAMP},
+		#{gmtValueDate,jdbcType=TIMESTAMP},
+		#{gmtExpirationDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductEntity">
+		insert into t_product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="contractId != null">
+				contract_id,
+			</if>
+			<if test="repaymentType != null">
+				repayment_type,
+			</if>
+			<if test="financingUserId != null">
+				financing_user_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="productTypeId != null">
+				product_type_id,
+			</if>
+			<if test="productLabelId != null">
+				product_label_id,
+			</if>
+			<if test="totalInterestRate != null">
+				total_interest_rate,
+			</if>
+			<if test="originalInterestRate != null">
+				original_interest_rate,
+			</if>
+			<if test="subsidyInterestRate != null">
+				subsidy_interest_rate,
+			</if>
+			<if test="timeLimit != null">
+				time_limit,
+			</if>
+			<if test="valueDateMethod != null">
+				value_date_method,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="soldAmount != null">
+				sold_amount,
+			</if>
+			<if test="unsoldAmount != null">
+				unsold_amount,
+			</if>
+			<if test="amountMin != null">
+				amount_min,
+			</if>
+			<if test="amountMax != null">
+				amount_max,
+			</if>
+			<if test="securityLevel != null">
+				security_level,
+			</if>
+			<if test="presellFlag != null">
+				presell_flag,
+			</if>
+			<if test="gmtRelease != null">
+				gmt_release,
+			</if>
+			<if test="gmtValueDate != null">
+				gmt_value_date,
+			</if>
+			<if test="gmtExpirationDate != null">
+				gmt_expiration_date,
+			</if>
+			<if test="gmtSellOut != null">
+				gmt_sell_out,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="contractId != null">
+				#{contractId,jdbcType=BIGINT},
+			</if>
+			<if test="repaymentType != null">
+				#{repaymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="financingUserId != null">
+				#{financingUserId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="productTypeId != null">
+				#{productTypeId,jdbcType=BIGINT},
+			</if>
+			<if test="productLabelId != null">
+				#{productLabelId,jdbcType=BIGINT},
+			</if>
+			<if test="totalInterestRate != null">
+				#{totalInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="originalInterestRate != null">
+				#{originalInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="subsidyInterestRate != null">
+				#{subsidyInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="timeLimit != null">
+				#{timeLimit,jdbcType=INTEGER},
+			</if>
+			<if test="valueDateMethod != null">
+				#{valueDateMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="soldAmount != null">
+				#{soldAmount,jdbcType=BIGINT},
+			</if>
+			<if test="unsoldAmount != null">
+				#{unsoldAmount,jdbcType=BIGINT},
+			</if>
+			<if test="amountMin != null">
+				#{amountMin,jdbcType=BIGINT},
+			</if>
+			<if test="amountMax != null">
+				#{amountMax,jdbcType=BIGINT},
+			</if>
+			<if test="securityLevel != null">
+				#{securityLevel,jdbcType=INTEGER},
+			</if>
+			<if test="presellFlag != null">
+				#{presellFlag,jdbcType=BIT},
+			</if>
+			<if test="gmtRelease != null">
+				#{gmtRelease,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValueDate != null">
+				#{gmtValueDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtExpirationDate != null">
+				#{gmtExpirationDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtSellOut != null">
+				#{gmtSellOut,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductEntity">
+		update t_product
+		<set>
+			<if test="contractId != null">
+				contract_id = #{contractId,jdbcType=BIGINT},
+			</if>
+			<if test="repaymentType != null">
+				repayment_type = #{repaymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="financingUserId != null">
+				financing_user_id = #{financingUserId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="productTypeId != null">
+				product_type_id = #{productTypeId,jdbcType=BIGINT},
+			</if>
+			<if test="productLabelId != null">
+				product_label_id = #{productLabelId,jdbcType=BIGINT},
+			</if>
+			<if test="totalInterestRate != null">
+				total_interest_rate =
+				#{totalInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="originalInterestRate != null">
+				original_interest_rate =
+				#{originalInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="subsidyInterestRate != null">
+				subsidy_interest_rate =
+				#{subsidyInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="timeLimit != null">
+				time_limit = #{timeLimit,jdbcType=INTEGER},
+			</if>
+			<if test="valueDateMethod != null">
+				value_date_method = #{valueDateMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="soldAmount != null">
+				sold_amount = #{soldAmount,jdbcType=BIGINT},
+			</if>
+			<if test="unsoldAmount != null">
+				unsold_amount = #{unsoldAmount,jdbcType=BIGINT},
+			</if>
+			<if test="amountMin != null">
+				amount_min = #{amountMin,jdbcType=BIGINT},
+			</if>
+			<if test="amountMax != null">
+				amount_max = #{amountMax,jdbcType=BIGINT},
+			</if>
+			<if test="securityLevel != null">
+				security_level = #{securityLevel,jdbcType=INTEGER},
+			</if>
+			<if test="presellFlag != null">
+				presell_flag = #{presellFlag,jdbcType=BIT},
+			</if>
+			<if test="gmtRelease != null">
+				gmt_release = #{gmtRelease,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValueDate != null">
+				gmt_value_date = #{gmtValueDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtExpirationDate != null">
+				gmt_expiration_date =
+				#{gmtExpirationDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtSellOut != null">
+				gmt_sell_out = #{gmtSellOut,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductEntity">
+		update t_product
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		contract_id =
+		#{contractId,jdbcType=BIGINT},
+		repayment_type =
+		#{repaymentType,jdbcType=VARCHAR},
+		financing_user_id =
+		#{financingUserId,jdbcType=BIGINT},
+		title = #{title,jdbcType=VARCHAR},
+		product_type_id = #{productTypeId,jdbcType=BIGINT},
+		product_label_id =
+		#{productLabelId,jdbcType=BIGINT},
+		total_interest_rate =
+		#{totalInterestRate,jdbcType=DECIMAL},
+		original_interest_rate =
+		#{originalInterestRate,jdbcType=DECIMAL},
+		subsidy_interest_rate =
+		#{subsidyInterestRate,jdbcType=DECIMAL},
+		time_limit =
+		#{timeLimit,jdbcType=INTEGER},
+		value_date_method =
+		#{valueDateMethod,jdbcType=VARCHAR},
+		amount =
+		#{amount,jdbcType=BIGINT},
+		sold_amount = #{soldAmount,jdbcType=BIGINT},
+		unsold_amount = #{unsoldAmount,jdbcType=BIGINT},
+		amount_min =
+		#{amountMin,jdbcType=BIGINT},
+		amount_max =
+		#{amountMax,jdbcType=BIGINT},
+		security_level =
+		#{securityLevel,jdbcType=INTEGER},
+		presell_flag =
+		#{presellFlag,jdbcType=BIT},
+		gmt_release =
+		#{gmtRelease,jdbcType=TIMESTAMP},
+		gmt_value_date =
+		#{gmtValueDate,jdbcType=TIMESTAMP},
+		gmt_expiration_date =
+		#{gmtExpirationDate,jdbcType=TIMESTAMP},
+		status =
+		#{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="listByCondition" resultMap="BaseResultMap"
+		parameterType="com.ruixun.sincfin.domain.query.ProductQuery">
+		select
+		<include refid="Base_Column_List" />
+		from t_product
+		where deleted_flag = 0
+		<if test="title != null and title != ''">
+			and title = #{title}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="unsoldAmount != null">
+			and unsold_amount = #{unsoldAmount}
+		</if>
+		<if test="gmtEndExpirationDate != null">
+			and gmt_expiration_date &lt; #{gmtEndExpirationDate}
+		</if>
+		order by id desc
+	</select>
+
+	<select id="listManagerByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.ProductDto"
+		parameterType="com.ruixun.sincfin.domain.query.ProductQuery">
+		select
+		p.id, p.gmt_create, p.contract_id, p.title, p.total_interest_rate,
+		p.subsidy_interest_rate, p.time_limit, p.amount, p.unsold_amount,
+		p.amount_min, p.amount_max, p.product_type_id, p.product_label_id,
+		p.value_date_method, p.security_level,
+		p.presell_flag, p.gmt_release, p.gmt_value_date, p.gmt_expiration_date,p.gmt_sell_out,
+		p.status, c.title as contract_title, pt.name as product_type_name,
+		pl.name as product_label_name
+		from t_product p
+		left join t_contract c on p.contract_id = c.id
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		where
+		p.deleted_flag = 0
+		<if test="title != null and title != ''">
+			and p.title = #{title}
+		</if>
+		<if test="status != null and status != ''">
+			and p.status = #{status}
+		</if>
+		<if test="contractId != null">
+			and p.contract_id = #{contractId}
+		</if>
+		<if test="gmtStartRelease != null">
+			and p.gmt_release >= #{gmtStartRelease}
+		</if>
+		<if test="gmtEndRelease != null">
+			and p.gmt_release &lt; #{gmtEndRelease}
+		</if>
+		<if test="gmtStartValueDate != null">
+			and p.gmt_value_date >= #{gmtStartValueDate}
+		</if>
+		<if test="gmtEndValueDate != null">
+			and p.gmt_value_date &lt; #{gmtEndValueDate}
+		</if>
+		<if test="gmtStartExpirationDate != null">
+			and p.gmt_expiration_date >= #{gmtStartExpirationDate}
+		</if>
+		<if test="gmtEndExpirationDate != null">
+			and p.gmt_expiration_date &lt; #{gmtEndExpirationDate}
+		</if>
+		<if test="gmtStartSellOut != null">
+			and p.gmt_sell_out >= #{gmtStartSellOut}
+		</if>
+		<if test="gmtEndSellOut != null">
+			and p.gmt_sell_out &lt; #{gmtEndSellOut}
+		</if>
+		order by p.id desc
+	</select>
+
+	<select id="listSearch"
+		resultType="com.ruixun.sincfin.domain.dto.ProductDto"
+		parameterType="com.ruixun.sincfin.domain.query.ProductQuery">
+		select
+		<include refid="Base_Column_List" />
+		from t_product
+		where deleted_flag = 0
+		<if test="title != null and title != ''">
+			and title like concat('%',#{title},'%')
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		order by id desc
+	</select>
+
+	<select id="getDetailById"
+		resultType="com.ruixun.sincfin.domain.dto.ProductDto"
+		parameterType="java.lang.Long">
+		select
+		p.id, p.gmt_create, p.contract_id, p.title, p.total_interest_rate,
+		p.subsidy_interest_rate, p.time_limit, p.amount, p.unsold_amount,
+		p.presell_flag, p.gmt_release, p.gmt_value_date,
+		p.gmt_expiration_date,
+		p.status, p.amount_min, p.amount_max, p.security_level,
+		p.product_type_id, p.product_label_id, p.value_date_method,
+		pt.name as product_type_name, pl.name as product_label_name , p.status
+		from
+		t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		where
+		p.deleted_flag = 0 and p.id = #{id}
+	</select>
+
+	<select id="countByCondition" resultType="java.lang.Integer"
+		parameterType="com.ruixun.sincfin.domain.query.ProductQuery">
+		select count(id)
+		from t_product
+		where deleted_flag = 0
+		<if test="contractId != null">
+			and contract_id = #{contractId}
+		</if>
+	</select>
+
+
+	<!-- 获取新手的推荐标的 -->
+	<select id="getNewUserRecommend" resultMap="ProductDtoMap">
+		SELECT
+		p.id , p.title ,p.total_interest_rate, p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount , p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name , p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		WHERE p.deleted_flag = 0 and p.status = 'on_sale'
+		and pt.code = 'NEW_USER' and p.gmt_release <![CDATA[ <= ]]>
+		now()
+		order by total_interest_rate desc,time_limit desc,id 
+		limit 0,1
+	</select>
+
+	<select id="getOldUserRecommend" resultMap="ProductDtoMap">
+		SELECT
+		p.id , p.title ,p.total_interest_rate , p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount ,p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name , p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		WHERE p.deleted_flag = 0 and p.status = 'on_sale'
+		and pt.code != 'NEW_USER' and p.gmt_release <![CDATA[ <= ]]>
+		now()
+		order by total_interest_rate desc,time_limit desc,id 
+		limit 0,1
+	</select>
+
+
+	<select id="listByTypeArea" resultMap="ProductDtoMap">
+		SELECT
+		p.id , p.title ,p.total_interest_rate , p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount ,p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name,
+		p.presell_flag,p.gmt_release , p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		WHERE p.deleted_flag = 0 and p.status = 'on_sale'
+		and pt.area = #{area} AND unsold_amount>0
+		order by total_interest_rate desc , time_limit desc,id ASC
+	</select>
+
+
+
+	<select id="listSellOut" resultMap="ProductDtoMap">
+		SELECT
+		p.id , p.title ,p.total_interest_rate , p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount ,p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name ,
+		p.presell_flag,p.gmt_release , p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		WHERE p.deleted_flag = 0 and p.status in('interest','repayment','end')
+		and
+		(p.status in('interest','repayment','end') or (unsold_amount=0 AND p.status =
+		'on_sale' ))
+		order by p.gmt_value_date desc,id
+	</select>
+
+
+	<select id="getAvailable" resultMap="ProductDtoMap"
+		parameterType="java.lang.Long">
+		SELECT
+		p.id , p.title ,p.total_interest_rate , p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount ,p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name,
+		p.presell_flag,p.gmt_release,p.security_level,p.gmt_value_date,p.gmt_expiration_date
+		, p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		where p.id =
+		#{id,jdbcType=BIGINT} and p.deleted_flag = 0 and p.status = 'on_sale'
+	</select>
+
+	<select id="getFullById" resultMap="ProductDtoMap"
+		parameterType="java.lang.Long">
+		SELECT
+		p.id , p.title ,p.total_interest_rate , p.original_interest_rate ,
+		p.subsidy_interest_rate ,
+		p.time_limit,p.value_date_method,p.amount, p.sold_amount, p.unsold_amount ,p.amount_min,p.amount_max ,
+		p.product_type_id , pt.code product_type_code, p.product_label_id,
+		pl.name product_label_name,
+		p.presell_flag,p.gmt_release,p.security_level,p.gmt_value_date,p.gmt_expiration_date
+		, p.status
+		FROM t_product p
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		where p.id =
+		#{id,jdbcType=BIGINT} and p.deleted_flag = 0
+	</select>
+
+
+	<select id="introduce"
+		resultType="com.ruixun.sincfin.domain.dto.ProductIntroduceDto"
+		parameterType="java.lang.Long">
+		SELECT
+		p.id , p.title
+		,p.time_limit,p.value_date_method,p.amount,p.security_level,
+		c.loan_use , p.repayment_type , c.service_agreement ,
+		fu.business_license_image ,
+		fu.id_card_face_image,fu.id_card_back_image,
+		c.guarantee_company , c.legal_basis
+		FROM t_product p
+
+		left join t_contract c on p.contract_id = c.id
+		left join t_financing_user fu on p.financing_user_id = fu.id
+		where p.id =
+		#{id,jdbcType=BIGINT} and p.deleted_flag = 0
+	</select>
+
+
+	<update id="updateSoldAmount">
+		update t_product
+		set sold_amount =
+		sold_amount + #{soldAmount},
+		unsold_amount = unsold_amount + #{unsoldAmount}
+		where deleted_flag = 0 and id =
+		#{id}
+	</update>
+
+
+
+
+
+</mapper>

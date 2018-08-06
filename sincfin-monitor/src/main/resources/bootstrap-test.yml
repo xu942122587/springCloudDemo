@@ -1,0 +1,15 @@
+server:
+  port: 1112
+spring:
+  application:
+    name: sincfin-monitor
+  profiles: test
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      label: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka

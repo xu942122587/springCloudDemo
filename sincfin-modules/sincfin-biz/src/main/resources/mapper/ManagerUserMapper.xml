@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.manager.mapper.ManagerUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.ManagerUserEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_name,
+    real_name, password, mobile, email, role_id, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_manager_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.ManagerUserEntity" >
+    insert into t_manager_user (id, gmt_create, gmt_modified, 
+      deleted_flag, user_name, real_name, password,
+      mobile, email, role_id, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.ManagerUserEntity"
+    useGeneratedKeys="true" keyProperty="id" >
+    insert into t_manager_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.ManagerUserEntity" >
+    update t_manager_user
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.ManagerUserEntity" >
+    update t_manager_user
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update t_manager_user
+    set deleted_flag = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getByUserName" resultType="com.ruixun.sincfin.domain.entity.ManagerUserEntity" >
+    select
+    <include refid="Base_Column_List" />
+    from t_manager_user
+    where deleted_flag = 0 and user_name = #{userName}
+  </select>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.ManagerUserDto"
+          parameterType="com.ruixun.sincfin.domain.query.ManagerUserQuery" >
+    select mu.id, mu.gmt_create, mu.user_name, mu.real_name,
+      mu.mobile, mu.email, mu.role_id, mu.status, mr.name as role_name
+    from t_manager_user mu left join t_manager_role mr
+      on mu.role_id = mr.id
+    where mu.deleted_flag = 0
+      <if test="userName != null and userName != ''">
+        and mu.user_name like concat('%',#{userName},'%')
+      </if>
+      <if test="status != null and status != ''">
+        and mu.status = #{status}
+      </if>
+      <if test="idList != null and idList.size() > 0">
+        and mu.id in
+        <foreach collection="idList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      </if>
+      <if test="roleId != null">
+        and mu.role_id = #{roleId}
+      </if>
+    order by mu.id desc
+  </select>
+
+  <select id="countByCondition" resultType="java.lang.Integer"
+          parameterType="com.ruixun.sincfin.domain.query.ManagerUserQuery" >
+    select count(id)
+    from t_manager_user
+    where deleted_flag = 0
+      <if test="idList != null and idList.size() > 0">
+        and id in
+        <foreach collection="idList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      </if>
+      <if test="roleId != null">
+        and role_id = #{roleId}
+      </if>
+  </select>
+
+</mapper>

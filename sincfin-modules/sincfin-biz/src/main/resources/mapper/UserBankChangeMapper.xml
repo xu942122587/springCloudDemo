@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.user.mapper.UserBankChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.UserBankChangeEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="before_user_bank_id" property="beforeUserBankId" jdbcType="BIGINT" />
+    <result column="before_bank_card_no" property="beforeBankCardNo" jdbcType="VARCHAR" />
+    <result column="before_bank_name" property="beforeBankName" jdbcType="VARCHAR" />
+    <result column="after_user_bank_id" property="afterUserBankId" jdbcType="BIGINT" />
+    <result column="after_bank_card_no" property="afterBankCardNo" jdbcType="VARCHAR" />
+    <result column="after_bank_name" property="afterBankName" jdbcType="VARCHAR" />
+    <result column="id_card_face_image" property="idCardFaceImage" jdbcType="VARCHAR" />
+    <result column="id_card_back_image" property="idCardBackImage" jdbcType="VARCHAR" />
+    <result column="gmt_audit" property="gmtAudit" jdbcType="TIMESTAMP" />
+    <result column="auditor_id" property="auditorId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_id, before_user_bank_id, before_bank_card_no,
+    before_bank_name, after_user_bank_id, after_bank_card_no, after_bank_name, id_card_face_image, 
+    id_card_back_image, gmt_audit, auditor_id, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_bank_change
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.UserBankChangeEntity" >
+    insert into t_user_bank_change (id, gmt_create, gmt_modified, 
+      deleted_flag, user_id, before_user_bank_id,
+      before_bank_card_no, before_bank_name, after_user_bank_id, 
+      after_bank_card_no, after_bank_name, id_card_face_image, 
+      id_card_back_image, gmt_audit, auditor_id, 
+      status, remark)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{beforeUserBankId,jdbcType=BIGINT},
+      #{beforeBankCardNo,jdbcType=VARCHAR}, #{beforeBankName,jdbcType=VARCHAR}, #{afterUserBankId,jdbcType=BIGINT},
+      #{afterBankCardNo,jdbcType=VARCHAR}, #{afterBankName,jdbcType=VARCHAR}, #{idCardFaceImage,jdbcType=VARCHAR}, 
+      #{idCardBackImage,jdbcType=VARCHAR}, #{gmtAudit,jdbcType=TIMESTAMP}, #{auditorId,jdbcType=BIGINT}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.UserBankChangeEntity" >
+    insert into t_user_bank_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="beforeUserBankId != null" >
+        before_user_bank_id,
+      </if>
+      <if test="beforeBankCardNo != null" >
+        before_bank_card_no,
+      </if>
+      <if test="beforeBankName != null" >
+        before_bank_name,
+      </if>
+      <if test="afterUserBankId != null" >
+        after_user_bank_id,
+      </if>
+      <if test="afterBankCardNo != null" >
+        after_bank_card_no,
+      </if>
+      <if test="afterBankName != null" >
+        after_bank_name,
+      </if>
+      <if test="idCardFaceImage != null" >
+        id_card_face_image,
+      </if>
+      <if test="idCardBackImage != null" >
+        id_card_back_image,
+      </if>
+      <if test="gmtAudit != null" >
+        gmt_audit,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeUserBankId != null" >
+        #{beforeUserBankId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeBankCardNo != null" >
+        #{beforeBankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeBankName != null" >
+        #{beforeBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUserBankId != null" >
+        #{afterUserBankId,jdbcType=BIGINT},
+      </if>
+      <if test="afterBankCardNo != null" >
+        #{afterBankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="afterBankName != null" >
+        #{afterBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFaceImage != null" >
+        #{idCardFaceImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBackImage != null" >
+        #{idCardBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtAudit != null" >
+        #{gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.UserBankChangeEntity" >
+    update t_user_bank_change
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeUserBankId != null" >
+        before_user_bank_id = #{beforeUserBankId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeBankCardNo != null" >
+        before_bank_card_no = #{beforeBankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeBankName != null" >
+        before_bank_name = #{beforeBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUserBankId != null" >
+        after_user_bank_id = #{afterUserBankId,jdbcType=BIGINT},
+      </if>
+      <if test="afterBankCardNo != null" >
+        after_bank_card_no = #{afterBankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="afterBankName != null" >
+        after_bank_name = #{afterBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFaceImage != null" >
+        id_card_face_image = #{idCardFaceImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBackImage != null" >
+        id_card_back_image = #{idCardBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtAudit != null" >
+        gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.UserBankChangeEntity" >
+    update t_user_bank_change
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      before_user_bank_id = #{beforeUserBankId,jdbcType=BIGINT},
+      before_bank_card_no = #{beforeBankCardNo,jdbcType=VARCHAR},
+      before_bank_name = #{beforeBankName,jdbcType=VARCHAR},
+      after_user_bank_id = #{afterUserBankId,jdbcType=BIGINT},
+      after_bank_card_no = #{afterBankCardNo,jdbcType=VARCHAR},
+      after_bank_name = #{afterBankName,jdbcType=VARCHAR},
+      id_card_face_image = #{idCardFaceImage,jdbcType=VARCHAR},
+      id_card_back_image = #{idCardBackImage,jdbcType=VARCHAR},
+      gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+      auditor_id = #{auditorId,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.UserBankChangeDto"
+          parameterType="com.ruixun.sincfin.domain.query.UserBankChangeQuery" >
+    select ubc.id, ubc.gmt_create, ubc.user_id, ubc.before_bank_card_no, ubc.before_bank_name,
+      ubc.after_bank_card_no, ubc.after_bank_name, ubc.id_card_face_image,
+      ubc.id_card_back_image, ubc.gmt_audit, ubc.status,
+      u.real_name as user_real_name, u.mobile as user_mobile,
+      u.id_card_no as user_id_card_no
+    from t_user_bank_change ubc
+      left join t_user u on ubc.user_id = u.id
+    where ubc.deleted_flag = 0 and u.deleted_flag = 0
+    <if test="userRealName != null and userRealName != ''">
+      and u.real_name like concat('%',#{userRealName},'%')
+    </if>
+    <if test="userMobile != null and userMobile != ''">
+      and u.mobile like concat('%',#{userMobile},'%')
+    </if>
+    <if test="status != null and status != ''">
+      and ubc.status = #{status}
+    </if>
+    <if test="gmtStartCreate != null">
+      and ubc.gmt_create >= #{gmtStartCreate}
+    </if>
+    <if test="gmtEndCreate != null">
+      and ubc.gmt_create &lt; #{gmtEndCreate}
+    </if>
+    <if test="gmtStartAudit != null">
+      and ubc.gmt_audit >= #{gmtStartAudit}
+    </if>
+    <if test="gmtEndAudit != null">
+      and ubc.gmt_audit &lt; #{gmtEndAudit}
+    </if>
+    order by ubc.id desc
+  </select>
+
+  <update id="updateAuditPass">
+    update t_user_bank_change
+    set status = 'pass', auditor_id = #{auditorId}, gmt_audit = now()
+    where id = #{id} and status = 'pending'
+  </update>
+
+  <update id="updateAuditReject">
+    update t_user_bank_change
+    set status = 'reject', auditor_id = #{auditorId}, remark = #{remark}, gmt_audit = now()
+    where id = #{id} and status = 'pending'
+  </update>
+
+
+</mapper>

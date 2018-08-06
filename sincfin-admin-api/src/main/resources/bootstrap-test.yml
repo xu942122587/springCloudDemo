@@ -1,0 +1,17 @@
+server:
+  port: 9092
+spring:
+  application:
+    name: admin-api, message-client
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      label: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

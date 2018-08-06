@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.user.mapper.UserBankMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.UserBankEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="id_card_no" property="idCardNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="bind_merch" property="bindMerch" jdbcType="VARCHAR" />
+    <result column="total_recharge" property="totalRecharge" jdbcType="BIGINT" />
+    <result column="total_withdraw" property="totalWithdraw" jdbcType="BIGINT" />
+    <result column="withdraw_limit" property="withdrawLimit" jdbcType="BIGINT" />
+    <result column="bind_status" property="bindStatus" jdbcType="VARCHAR" />
+    <result column="fuiou_user_id" property="fuiouUserId" jdbcType="VARCHAR" />
+    <result column="fuiou_protocol_no" property="fuiouProtocolNo" jdbcType="VARCHAR" />
+    <result column="fuiou_code" property="fuiouCode" jdbcType="VARCHAR" />
+    <result column="fuiou_msg" property="fuiouMsg" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_id, bank_card_no, id_card_no, mobile, 
+    real_name, bank_name, bank_code, bind_merch , total_recharge ,total_withdraw , withdraw_limit, bind_status ,
+    fuiou_user_id , fuiou_protocol_no ,fuiou_code , fuiou_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_bank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id" parameterType="com.ruixun.sincfin.domain.entity.UserBankEntity" >
+    insert into t_user_bank (id, gmt_create, gmt_modified, 
+      deleted_flag, user_id, bank_card_no, 
+      id_card_no, mobile, real_name, 
+      bank_name, bank_code, bind_merch, total_recharge ,total_withdraw ,withdraw_limit, 
+      bind_status,fuiou_user_id,fuiou_protocol_no,fuiou_code,fuiou_msg)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{bankCardNo,jdbcType=VARCHAR}, 
+      #{idCardNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR},#{bindMerch,jdbcType=VARCHAR}, 
+      #{totalRecharge,jdbcType=BIGINT}, #{totalWithdraw,jdbcType=BIGINT}, #{withdrawLimit,jdbcType=BIGINT}, #{bindStatus,jdbcType=VARCHAR},
+      #{fuiouUserId,jdbcType=BIGINT}, #{fuiouProtocolNo,jdbcType=VARCHAR},#{fuiouCode,jdbcType=BIGINT}, #{fuiouMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id" parameterType="com.ruixun.sincfin.domain.entity.UserBankEntity" >
+    insert into t_user_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="idCardNo != null" >
+        id_card_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="bindMerch != null" >
+        bind_merch,
+      </if>
+      <if test="totalRecharge != null" >
+        total_recharge,
+      </if>
+      <if test="totalWithdraw != null" >
+        total_withdraw,
+      </if>
+      <if test="withdrawLimit != null" >
+        withdraw_limit,
+      </if>
+      <if test="bindStatus != null" >
+        bind_status,
+      </if>
+      <if test="fuiouUserId != null" >
+        fuiou_user_id,
+      </if>
+      <if test="fuiouProtocolNo != null" >
+        fuiou_protocol_no,
+      </if>
+      <if test="fuiouCode != null" >
+        fuiou_code,
+      </if>
+      <if test="fuiouMsg != null" >
+        fuiou_msg,
+      </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null" >
+        #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bindMerch != null" >
+        #{bindMerch,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRecharge != null" >
+        #{totalRecharge,jdbcType=BIGINT},
+      </if>
+      <if test="totalWithdraw != null" >
+        #{totalWithdraw,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawLimit != null" >
+        #{withdrawLimit,jdbcType=BIGINT},
+      </if>
+      <if test="bindStatus != null" >
+        #{bindStatus,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="fuiouUserId != null" >
+        #{fuiouUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouProtocolNo != null" >
+        #{fuiouProtocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouCode != null" >
+        #{fuiouCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouMsg != null" >
+        #{fuiouMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.UserBankEntity" >
+    update t_user_bank
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null" >
+        id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bindMerch != null" >
+        bind_merch = #{bindMerch,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRecharge != null" >
+        total_recharge = #{totalRecharge,jdbcType=BIGINT},
+      </if>
+      <if test="totalWithdraw != null" >
+        total_withdraw = #{totalWithdraw,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawLimit != null" >
+        withdraw_limit = #{withdrawLimit,jdbcType=BIGINT},
+      </if>
+      <if test="bindStatus != null" >
+        bind_status = #{bindStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouUserId != null" >
+        fuiou_user_id = #{fuiouUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouProtocolNo != null" >
+        fuiou_protocol_no = #{fuiouProtocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouCode != null" >
+        fuiou_code = #{fuiouCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fuiouMsg != null" >
+        fuiou_msg = #{fuiouMsg,jdbcType=VARCHAR},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.UserBankEntity" >
+    update t_user_bank
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bind_merch = #{bindMerch,jdbcType=VARCHAR},
+      total_recharge = #{totalRecharge,jdbcType=BIGINT},
+      total_withdraw = #{totalWithdraw,jdbcType=BIGINT},
+      withdraw_limit = #{withdrawLimit,jdbcType=BIGINT},
+      bind_status = #{bindStatus,jdbcType=VARCHAR},
+      fuiou_user_id = #{fuiouUserId,jdbcType=VARCHAR},
+      fuiou_protocol_no = #{fuiouProtocolNo,jdbcType=VARCHAR},
+      fuiou_code = #{fuiouCode,jdbcType=VARCHAR},
+      fuiou_msg = #{fuiouMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.UserBankDto"
+          parameterType="com.ruixun.sincfin.domain.query.UserBankQuery">
+    select
+      ub.id, ub.gmt_create, ub.gmt_modified, ub.user_id, ub.bank_card_no, ub.id_card_no, ub.mobile,
+      ub.real_name, ub.bank_name, ub.bank_code, ub.bind_merch, ub.total_recharge, ub.total_withdraw,
+      (ub.total_recharge - ub.total_withdraw + a.received_interest + a.coupon_bonus_income) as withdraw_limit
+    from t_user_bank ub left join t_account a on ub.user_id = a.user_id
+    where ub.deleted_flag = 0
+      <if test="userId != null">
+        and ub.user_id = #{userId}
+      </if>
+      <if test="bindStatus != null and bindStatus != ''">
+        and ub.bind_status = #{bindStatus}
+      </if>
+    order by ub.id desc
+  </select>
+ 
+  <select id="selectRecentUpdate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_user_bank
+    where user_id = #{userId,jdbcType=BIGINT} and deleted_flag = 0
+    	and bind_status = 'bind'
+    order by gmt_modified desc
+    limit 0,1
+  </select>
+  
+  <select id="getByCard" resultMap="BaseResultMap">
+    select
+     <include refid="Base_Column_List"/>
+    from t_user_bank
+    where deleted_flag = 0 and bank_card_no = #{bankCardNo}
+    	and bind_status = 'bind'
+  </select>
+  
+  <select id="getAvailable" resultMap="BaseResultMap">
+    select
+     <include refid="Base_Column_List"/>
+    from t_user_bank
+    where deleted_flag = 0  and bind_status = 'bind'
+    	and id = #{id}
+  </select>
+  
+  <select id="isBindBankCode"  resultType="boolean">
+    select
+     if(count(id)>=1,1,0)
+    from t_user_bank
+    where deleted_flag = 0  and bind_status = 'bind'
+    	and user_id = #{userId}
+  </select>
+
+  <update id="updateTotalWithdraw" >
+    update t_user_bank
+    set total_withdraw = total_withdraw + #{amount}
+    where deleted_flag = 0 and id = #{id}
+  </update>
+
+  <update id="updateChangeUnbind">
+    update t_user_bank
+    set bind_status = 'unbind'
+    where deleted_flag = 0
+      and id = #{id} and bind_status = 'unbinding'
+  </update>
+
+  <update id="updateChangeBind">
+    update t_user_bank
+    set bind_status = 'bind'
+    where deleted_flag = 0
+    and id = #{id} and bind_status = 'unbinding'
+  </update>
+
+  <update id="updateUserBankChange">
+    update t_user_bank ub inner join (
+      select id, user_id, total_recharge, total_withdraw
+      from t_user_bank
+      where id = #{beforeUserBankId} and bind_status = 'unbinding'
+    ) tmp on  ub.id = #{afterUserBankId}
+    set ub.total_recharge = ub.total_recharge + tmp.total_recharge,
+        ub.total_withdraw = ub.total_withdraw + tmp.total_withdraw;
+  </update>
+  
+  
+  
+  <select id="listByUser" resultMap="BaseResultMap" parameterType="com.ruixun.sincfin.domain.query.UserBankQuery">
+    select
+    <include refid="Base_Column_List"/>
+    from t_user_bank
+    where deleted_flag = 0 and bind_status in ('bind','unbinding')
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="bindStatus != null and bindStatus != ''">
+        and bind_status = #{bindStatus}
+      </if>
+      <if test="replaceBankCodeId != null">
+        and id != #{replaceBankCodeId}
+      </if>
+    order by gmt_modified desc
+  </select>
+  
+
+</mapper>

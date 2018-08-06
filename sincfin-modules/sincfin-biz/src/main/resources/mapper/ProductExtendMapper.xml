@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ruixun.sincfin.biz.mapper.ProductExtendMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.ProductExtend">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="product_id" jdbcType="BIGINT"
+			property="productId" />
+		<result column="uses" jdbcType="VARCHAR" property="uses" />
+		<result column="attr1" jdbcType="VARCHAR" property="attr1" />
+		<result column="attr2" jdbcType="VARCHAR" property="attr2" />
+		<result column="attr3" jdbcType="VARCHAR" property="attr3" />
+		<result column="attr4" jdbcType="VARCHAR" property="attr4" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.ruixun.sincfin.domain.entity.ProductExtend">
+		<result column="agreement" jdbcType="VARBINARY"
+			property="agreement" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, product_id, uses, attr1, attr2, attr3, attr4
+	</sql>
+	<sql id="Blob_Column_List">
+		agreement
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_product_extend
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductExtend">
+		insert into t_product_extend (id, product_id, uses,
+		attr1, attr2, attr3,
+		attr4, agreement)
+		values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT},
+		#{uses,jdbcType=VARCHAR},
+		#{attr1,jdbcType=VARCHAR}, #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR},
+		#{attr4,jdbcType=VARCHAR}, #{agreement,jdbcType=VARBINARY})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductExtend">
+		insert into t_product_extend
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="productId != null">
+				product_id,
+			</if>
+			<if test="uses != null">
+				uses,
+			</if>
+			<if test="attr1 != null">
+				attr1,
+			</if>
+			<if test="attr2 != null">
+				attr2,
+			</if>
+			<if test="attr3 != null">
+				attr3,
+			</if>
+			<if test="attr4 != null">
+				attr4,
+			</if>
+			<if test="agreement != null">
+				agreement,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=BIGINT},
+			</if>
+			<if test="uses != null">
+				#{uses,jdbcType=VARCHAR},
+			</if>
+			<if test="attr1 != null">
+				#{attr1,jdbcType=VARCHAR},
+			</if>
+			<if test="attr2 != null">
+				#{attr2,jdbcType=VARCHAR},
+			</if>
+			<if test="attr3 != null">
+				#{attr3,jdbcType=VARCHAR},
+			</if>
+			<if test="attr4 != null">
+				#{attr4,jdbcType=VARCHAR},
+			</if>
+			<if test="agreement != null">
+				#{agreement,jdbcType=VARBINARY},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductExtend">
+		update t_product_extend
+		<set>
+			<if test="productId != null">
+				product_id = #{productId,jdbcType=BIGINT},
+			</if>
+			<if test="uses != null">
+				uses = #{uses,jdbcType=VARCHAR},
+			</if>
+			<if test="attr1 != null">
+				attr1 = #{attr1,jdbcType=VARCHAR},
+			</if>
+			<if test="attr2 != null">
+				attr2 = #{attr2,jdbcType=VARCHAR},
+			</if>
+			<if test="attr3 != null">
+				attr3 = #{attr3,jdbcType=VARCHAR},
+			</if>
+			<if test="attr4 != null">
+				attr4 = #{attr4,jdbcType=VARCHAR},
+			</if>
+			<if test="agreement != null">
+				agreement = #{agreement,jdbcType=VARBINARY},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductExtend">
+		update t_product_extend
+		set product_id = #{productId,jdbcType=BIGINT},
+		uses = #{uses,jdbcType=VARCHAR},
+		attr1 = #{attr1,jdbcType=VARCHAR},
+		attr2 = #{attr2,jdbcType=VARCHAR},
+		attr3 = #{attr3,jdbcType=VARCHAR},
+		attr4 = #{attr4,jdbcType=VARCHAR},
+		agreement = #{agreement,jdbcType=VARBINARY}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.ProductExtend">
+		update t_product_extend
+		set product_id = #{productId,jdbcType=BIGINT},
+		uses = #{uses,jdbcType=VARCHAR},
+		attr1 = #{attr1,jdbcType=VARCHAR},
+		attr2 = #{attr2,jdbcType=VARCHAR},
+		attr3 = #{attr3,jdbcType=VARCHAR},
+		attr4 = #{attr4,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+</mapper>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.statistics.mapper.StatisticsBillMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.StatisticsBillEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="request_withdraw_amount"
+			property="requestWithdrawAmount" jdbcType="BIGINT" />
+		<result column="withdraw_amount" property="withdrawAmount"
+			jdbcType="BIGINT" />
+		<result column="recharge_amount" property="rechargeAmount"
+			jdbcType="BIGINT" />
+		<result column="investment_amount" property="investmentAmount"
+			jdbcType="BIGINT" />
+		<result column="repayment_amount" property="repaymentAmount"
+			jdbcType="BIGINT" />
+		<result column="coupon_amount" property="couponAmount"
+			jdbcType="BIGINT" />
+		<result column="cash_back_amount" property="cashBackAmount"
+			jdbcType="BIGINT" />
+		<result column="balance" property="balance" jdbcType="BIGINT" />
+		<result column="balance_increment" property="balanceIncrement"
+			jdbcType="BIGINT" />
+		<result column="current_stock" property="currentStock"
+			jdbcType="BIGINT" />
+		<result column="statistics_date" property="statisticsDate"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, request_withdraw_amount,
+		withdraw_amount,
+		recharge_amount, investment_amount, repayment_amount, coupon_amount, cash_back_amount,
+		sell_out_amount, balance, balance_increment, current_stock,
+		statistics_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_statistics_bill
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.StatisticsBillEntity">
+		insert into t_statistics_bill (id, gmt_create, gmt_modified,
+		deleted_flag, request_withdraw_amount, withdraw_amount,
+		recharge_amount, investment_amount, repayment_amount,
+		coupon_amount, cash_back_amount, sell_out_amount, balance,
+		balance_increment, current_stock, statistics_date
+		)
+		values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{requestWithdrawAmount,jdbcType=BIGINT},
+		#{withdrawAmount,jdbcType=BIGINT},
+		#{rechargeAmount,jdbcType=BIGINT}, #{investmentAmount,jdbcType=BIGINT},
+		#{repaymentAmount,jdbcType=BIGINT},
+		#{couponAmount,jdbcType=BIGINT}, #{cashBackAmount,jdbcType=BIGINT}, #{sellOutAmount,jdbcType=BIGINT},
+		#{balance,jdbcType=BIGINT},
+		#{balanceIncrement,jdbcType=BIGINT}, #{currentStock,jdbcType=BIGINT}, #{statisticsDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.StatisticsBillEntity">
+		insert into t_statistics_bill
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="requestWithdrawAmount != null">
+				request_withdraw_amount,
+			</if>
+			<if test="withdrawAmount != null">
+				withdraw_amount,
+			</if>
+			<if test="rechargeAmount != null">
+				recharge_amount,
+			</if>
+			<if test="investmentAmount != null">
+				investment_amount,
+			</if>
+			<if test="repaymentAmount != null">
+				repayment_amount,
+			</if>
+			<if test="couponAmount != null">
+				coupon_amount,
+			</if>
+			<if test="cashBackAmount != null">
+				cash_back_amount,
+			</if>
+			<if test="sellOutAmount != null">
+				sell_out_amount,
+			</if>
+			<if test="balance != null">
+				balance,
+			</if>
+			<if test="balanceIncrement != null">
+				balance_increment,
+			</if>
+			<if test="currentStock != null">
+				current_stock,
+			</if>
+			<if test="statisticsDate != null">
+				statistics_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="requestWithdrawAmount != null">
+				#{requestWithdrawAmount,jdbcType=BIGINT},
+			</if>
+			<if test="withdrawAmount != null">
+				#{withdrawAmount,jdbcType=BIGINT},
+			</if>
+			<if test="rechargeAmount != null">
+				#{rechargeAmount,jdbcType=BIGINT},
+			</if>
+			<if test="investmentAmount != null">
+				#{investmentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="repaymentAmount != null">
+				#{repaymentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="couponAmount != null">
+				#{couponAmount,jdbcType=BIGINT},
+			</if>
+			<if test="cashBackAmount != null">
+				#{cashBackAmount,jdbcType=BIGINT},
+			</if>
+			<if test="sellOutAmount != null">
+				#{sellOutAmount,jdbcType=BIGINT},
+			</if>
+			<if test="balance != null">
+				#{balance,jdbcType=BIGINT},
+			</if>
+			<if test="balanceIncrement != null">
+				#{balanceIncrement,jdbcType=BIGINT},
+			</if>
+			<if test="currentStock != null">
+				#{currentStock,jdbcType=BIGINT},
+			</if>
+			<if test="statisticsDate != null">
+				#{statisticsDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.StatisticsBillEntity">
+		update t_statistics_bill
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="requestWithdrawAmount != null">
+				request_withdraw_amount = #{requestWithdrawAmount,jdbcType=BIGINT},
+			</if>
+			<if test="withdrawAmount != null">
+				withdraw_amount = #{withdrawAmount,jdbcType=BIGINT},
+			</if>
+			<if test="rechargeAmount != null">
+				recharge_amount = #{rechargeAmount,jdbcType=BIGINT},
+			</if>
+			<if test="investmentAmount != null">
+				investment_amount = #{investmentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="repaymentAmount != null">
+				repayment_amount = #{repaymentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="couponAmount != null">
+				coupon_amount = #{couponAmount,jdbcType=BIGINT},
+			</if>
+			<if test="cashBackAmount != null">
+				cash_back_amount = #{cashBackAmount,jdbcType=BIGINT},
+			</if>
+			<if test="sellOutAmount != null">
+				sell_out_amount = #{sellOutAmount,jdbcType=BIGINT},
+			</if>
+			<if test="balance != null">
+				balance = #{balance,jdbcType=BIGINT},
+			</if>
+			<if test="balanceIncrement != null">
+				balance_increment = #{balanceIncrement,jdbcType=BIGINT},
+			</if>
+			<if test="currentStock != null">
+				current_stock = #{currentStock,jdbcType=BIGINT},
+			</if>
+			<if test="statisticsDate != null">
+				statistics_date = #{statisticsDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.StatisticsBillEntity">
+		update t_statistics_bill
+		set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag = #{deletedFlag,jdbcType=BIT},
+		request_withdraw_amount = #{requestWithdrawAmount,jdbcType=BIGINT},
+		withdraw_amount = #{withdrawAmount,jdbcType=BIGINT},
+		recharge_amount = #{rechargeAmount,jdbcType=BIGINT},
+		investment_amount = #{investmentAmount,jdbcType=BIGINT},
+		repayment_amount = #{repaymentAmount,jdbcType=BIGINT},
+		coupon_amount = #{couponAmount,jdbcType=BIGINT},
+		cash_back_amount = #{cashBackAmount,jdbcType=BIGINT},
+		sell_out_amount = #{sellOutAmount,jdbcType=BIGINT},
+		balance = #{balance,jdbcType=BIGINT},
+		balance_increment = #{balanceIncrement,jdbcType=BIGINT},
+		current_stock = #{currentStock,jdbcType=BIGINT},
+		statistics_date = #{statisticsDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="list"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsBillDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select
+		<include refid="Base_Column_List" />
+		from t_statistics_bill
+		where deleted_flag = 0
+		order by statistics_date desc
+	</select>
+
+	<select id="getRequestWithdrawAmount"
+		resultType="java.lang.Long"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select ifnull(sum(amount), 0)
+		from t_account_withdraw
+		where deleted_flag = 0
+		and gmt_create >= #{gmtStart}
+		and gmt_create &lt; #{gmtEnd}
+	</select>
+
+	<select id="getSellOutAmount" resultType="java.lang.Long"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select ifnull(sum(pr.principal), 0)
+		from t_product p
+		left join t_product_repayment pr on p.id = pr.product_id
+		where p.deleted_flag = 0
+		and p.gmt_sell_out >= #{gmtStart}
+		and p.gmt_sell_out &lt; #{gmtEnd}
+	</select>
+
+	<select id="getByStatisticsDate"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsBillDto">
+		select
+		<include refid="Base_Column_List" />
+		from t_statistics_bill
+		where deleted_flag = 0 and statistics_date = #{statisticsDate}
+	</select>
+
+	<select id="getRealTimeBalance" resultType="java.lang.Long">
+		select ifnull(sum(wallet_balance), 0)
+		from t_account
+		where deleted_flag = 0
+	</select>
+
+	<select id="getRealTimeCurrentStock" resultType="java.lang.Long">
+		select ifnull(sum(wallet_balance + current_investment_amount +
+		wait_interest), 0)
+		from t_account
+		where deleted_flag = 0
+	</select>
+
+	<select id="getAccountMoneyStatistics"
+		resultType="com.ruixun.sincfin.domain.dto.AccountMoneyRecordDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select type, ifnull(sum(amount), 0) as amount
+		from t_account_money_record
+		where deleted_flag = 0
+		and gmt_create >= #{gmtStart}
+		and gmt_create &lt; #{gmtEnd}
+		group by type
+	</select>
+
+	<select id="listAccountWithdraw"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		aw.gmt_create as gmt_withdraw_apply
+		from t_account_money_record amr
+		left join t_account_withdraw aw on amr.object_id = aw.id
+		where amr.deleted_flag = 0 and amr.type = 'withdraw'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listAccountRecharge"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		amr.object_id
+		from t_account_money_record amr
+		where amr.deleted_flag = 0 and amr.type = 'recharge'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listInvestment"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		amr.object_id,
+		p.title as product_title, o.interest, op.time_limit
+		from t_account_money_record amr
+		left join t_order o on amr.object_id = o.order_num
+		left join t_order_product op on o.order_num = op.order_num
+		left join t_product p on op.product_id = p.id
+		where amr.deleted_flag = 0 and amr.type = 'investment'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listRepayment"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		amr.object_id,
+		op.product_id, o.amount as principal, o.interest
+		from t_account_money_record amr
+		left join t_order o on amr.object_id = o.order_num
+		left join t_order_product op on o.order_num = op.order_num
+		where amr.deleted_flag = 0 and amr.type = 'principal_interest'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listCoupon"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		amr.object_id,
+		op.product_id, o.amount as investment_amount, op.time_limit
+		from t_account_money_record amr
+		left join t_order o on amr.object_id = o.order_num
+		left join t_order_product op on o.order_num = op.order_num
+		where amr.deleted_flag = 0 and amr.type = 'coupon_recharge'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listCashBack"
+		resultType="com.ruixun.sincfin.domain.dto.StatisticsAccountMoneyDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select amr.id, amr.gmt_create, amr.user_id, amr.amount, amr.balance,
+		amr.object_id
+		from t_account_money_record amr
+		where amr.deleted_flag = 0 and amr.type = 'cash_back'
+		and amr.gmt_create >= #{gmtStart}
+		and amr.gmt_create &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and amr.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by amr.id desc
+	</select>
+
+	<select id="listSellOut"
+		resultType="com.ruixun.sincfin.domain.dto.ProductDto"
+		parameterType="com.ruixun.sincfin.domain.query.StatisticsBillQuery">
+		select p.id, p.gmt_create, p.title, p.product_type_id,
+		p.product_label_id,
+		p.total_interest_rate, p.subsidy_interest_rate, p.time_limit,
+		p.value_date_method, p.gmt_release, p.gmt_value_date, p.gmt_expiration_date,
+		pr.principal as sell_out_amount,
+		pt.name as product_type_name, pl.name as product_label_name
+		from t_product p
+		left join t_product_repayment pr on p.id = pr.product_id
+		left join t_product_type pt on p.product_type_id = pt.id
+		left join t_product_label pl on p.product_label_id = pl.id
+		where p.deleted_flag = 0
+		and p.gmt_sell_out >= #{gmtStart}
+		and p.gmt_sell_out &lt; #{gmtEnd}
+		<if test="idList != null and idList.size() > 0">
+			and p.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		group by p.id desc
+	</select>
+	
+	<select id="getByDate" resultMap="BaseResultMap" parameterType="java.lang.String">
+  SELECT s.recharge_amount,s.investment_amount,withdraw_amount,repayment_amount
+FROM t_statistics_bill s
+WHERE DATE_FORMAT(s.`statistics_date`,'%Y-%m-%d')=#{date}
+  </select>
+</mapper>

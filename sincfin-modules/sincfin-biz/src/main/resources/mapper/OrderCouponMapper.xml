@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.order.mapper.OrderCouponMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.OrderCouponEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="order_num" property="orderNum"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="coupon_id" property="couponId"
+			jdbcType="BIGINT" />
+		<result column="user_coupon_id" property="userCouponId"
+			jdbcType="BIGINT" />
+		<result column="invest_money" property="investMoney"
+			jdbcType="BIGINT" />
+		<result column="coupon_type" property="couponType"
+			jdbcType="VARCHAR" />
+		<result column="bonus_amount" property="bonusAmount"
+			jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, order_num,
+		user_id,
+		coupon_id, user_coupon_id,
+		invest_money, coupon_type,
+		bonus_amount
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_order_coupon
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderCouponEntity">
+		insert into t_order_coupon (id, gmt_create,
+		gmt_modified,
+		deleted_flag, order_num, user_id,
+		coupon_id,
+		user_coupon_id, invest_money,
+		coupon_type, bonus_amount)
+		values
+		(#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT},
+		#{orderNum,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT},
+		#{couponId,jdbcType=BIGINT}, #{userCouponId,jdbcType=BIGINT},
+		#{investMoney,jdbcType=BIGINT},
+		#{couponType,jdbcType=VARCHAR},
+		#{bonusAmount,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderCouponEntity">
+		insert into t_order_coupon
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="orderNum != null">
+				order_num,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="couponId != null">
+				coupon_id,
+			</if>
+			<if test="userCouponId != null">
+				user_coupon_id,
+			</if>
+			<if test="investMoney != null">
+				invest_money,
+			</if>
+			<if test="couponType != null">
+				coupon_type,
+			</if>
+			<if test="bonusAmount != null">
+				bonus_amount,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="couponId != null">
+				#{couponId,jdbcType=BIGINT},
+			</if>
+			<if test="userCouponId != null">
+				#{userCouponId,jdbcType=BIGINT},
+			</if>
+			<if test="investMoney != null">
+				#{investMoney,jdbcType=BIGINT},
+			</if>
+			<if test="couponType != null">
+				#{couponType,jdbcType=VARCHAR},
+			</if>
+			<if test="bonusAmount != null">
+				#{bonusAmount,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderCouponEntity">
+		update t_order_coupon
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="orderNum != null">
+				order_num = #{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="couponId != null">
+				coupon_id = #{couponId,jdbcType=BIGINT},
+			</if>
+			<if test="userCouponId != null">
+				user_coupon_id = #{userCouponId,jdbcType=BIGINT},
+			</if>
+			<if test="investMoney != null">
+				invest_money = #{investMoney,jdbcType=BIGINT},
+			</if>
+			<if test="couponType != null">
+				coupon_type = #{couponType,jdbcType=VARCHAR},
+			</if>
+			<if test="bonusAmount != null">
+				bonus_amount = #{bonusAmount,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderCouponEntity">
+		update t_order_coupon
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		order_num = #{orderNum,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=BIGINT},
+		coupon_id =
+		#{couponId,jdbcType=BIGINT},
+		user_coupon_id =
+		#{userCouponId,jdbcType=BIGINT},
+		invest_money =
+		#{investMoney,jdbcType=BIGINT},
+		coupon_type =
+		#{couponType,jdbcType=VARCHAR},
+		bonus_amount =
+		#{bonusAmount,jdbcType=BIGINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

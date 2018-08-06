@@ -1,0 +1,14 @@
+server:
+  port: 9109
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.96.236.7:2222/eureka
+spring:
+  application:
+    name: sincfin-biz-pcs
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      label: pcs

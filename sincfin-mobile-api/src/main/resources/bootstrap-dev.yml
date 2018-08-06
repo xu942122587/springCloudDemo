@@ -1,0 +1,77 @@
+server:
+  port: 9091
+spring:
+  application:
+    name: mobile-api, message-client
+  profiles: dev   # native  dev
+  cloud:
+    config:
+      enabled: false
+  boot:
+    admin:
+      client:
+        enabled: false
+  ## 开发直接发到测试环境的队列去
+  stream:
+    bindings:
+      app-push-output:
+        destination: sincfin.message.app.test
+        group: sincfin-message
+      msn-push-output:
+        destination: sincfin.message.msn.test
+        group: sincfin-message
+  redis:
+    host: 118.31.22.118
+    port: 6381
+    password: 1q2w3e4r5t@2018
+  rabbitmq:
+    addresses: amqp://118.31.22.118:5672
+    username: pdd
+    password: pdd123456
+  autoconfigure:
+    exclude: org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://118.31.22.118:3306/sincfin?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: piaodada@1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+biz:
+  feign:
+    name: sincfin-biz-dev
+#请求处理的超时时间
+ribbon:
+  read_timeout: 3000
+#请求连接的超时时间
+  connect_timeout: 3000
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.ruixun.sincfin.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+sincfin:
+  sms:
+    send:
+      open: false                 # 是否开启短信通知
+    code:
+      validate: false             # 是否开启验证，开启验证意味着 打开了短信验证发送通道
+      defaultValue : "000000"     # 关闭验证时，默认的验证码
+  risk:
+    test:
+      url: http://testweb.piaodadalicai.com/tuyue-wap/dist/views/risk_exam.html
+## xxl job
+xxl:
+  job:
+    executor:
+        appname: sincfin-admin-dev
+        ip:
+        port: 9999
+        logpath: /opt/web/deploy/logs/xxl-job/
+        logretentiondays: 1
+  ## xxl job
+    admin:
+      addresses: http://47.100.227.217:8010/job
+    accessToken: ay5AB=1vN.e

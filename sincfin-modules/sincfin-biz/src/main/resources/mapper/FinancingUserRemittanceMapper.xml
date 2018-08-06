@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.finuser.mapper.FinancingUserRemittanceMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="financing_user_id" property="financingUserId"
+			jdbcType="BIGINT" />
+		<result column="contract_id" property="contractId"
+			jdbcType="BIGINT" />
+		<result column="product_id" property="productId"
+			jdbcType="BIGINT" />
+		<result column="gmt_expected_remittance"
+			property="gmtExpectedRemittance" jdbcType="TIMESTAMP" />
+		<result column="expected_amount" property="expectedAmount"
+			jdbcType="BIGINT" />
+		<result column="gmt_remittance" property="gmtRemittance"
+			jdbcType="TIMESTAMP" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="bank_serial_no" property="bankSerialNo"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="outherStatus" property="outherStatus" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag,
+		financing_user_id,
+		contract_id, product_id, gmt_expected_remittance,
+		expected_amount,
+		gmt_remittance, amount, bank_serial_no, remark, status ,outherStatus
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_financing_user_remittance
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		insert into t_financing_user_remittance (id, gmt_create,
+		gmt_modified,
+		deleted_flag, financing_user_id, contract_id, product_id
+		gmt_expected_remittance, expected_amount,
+		gmt_remittance, amount,
+		bank_serial_no,
+		remark, status, outherStatus)
+		values (#{id,jdbcType=BIGINT},
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{financingUserId,jdbcType=BIGINT},
+		#{contractId,jdbcType=BIGINT},
+		#{productId,jdbcType=BIGINT},
+		#{gmtExpectedRemittance,jdbcType=TIMESTAMP},
+		#{expectedAmount,jdbcType=BIGINT},
+		#{gmtRemittance,jdbcType=TIMESTAMP}, #{amount,jdbcType=BIGINT},
+		#{bankSerialNo,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{outherStatus,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		insert into t_financing_user_remittance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="financingUserId != null">
+				financing_user_id,
+			</if>
+			<if test="contractId != null">
+				contract_id,
+			</if>
+			<if test="productId != null">
+				product_id,
+			</if>
+			<if test="gmtExpectedRemittance != null">
+				gmt_expected_remittance,
+			</if>
+			<if test="expectedAmount != null">
+				expected_amount,
+			</if>
+			<if test="gmtRemittance != null">
+				gmt_remittance,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="bankSerialNo != null">
+				bank_serial_no,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="outherStatus != null">
+				outherStatus,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="financingUserId != null">
+				#{financingUserId,jdbcType=BIGINT},
+			</if>
+			<if test="contractId != null">
+				#{contractId,jdbcType=BIGINT},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=BIGINT},
+			</if>
+			<if test="gmtExpectedRemittance != null">
+				#{gmtExpectedRemittance,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expectedAmount != null">
+				#{expectedAmount,jdbcType=BIGINT},
+			</if>
+			<if test="gmtRemittance != null">
+				#{gmtRemittance,jdbcType=TIMESTAMP},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="bankSerialNo != null">
+				#{bankSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="outherStatus != null">
+				#{outherStatus,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		update t_financing_user_remittance
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="financingUserId != null">
+				financing_user_id = #{financingUserId,jdbcType=BIGINT},
+			</if>
+			<if test="contractId != null">
+				contract_id = #{contractId,jdbcType=BIGINT},
+			</if>
+			<if test="productId != null">
+				product_id = #{productId,jdbcType=BIGINT},
+			</if>
+			<if test="gmtExpectedRemittance != null">
+				gmt_expected_remittance =
+				#{gmtExpectedRemittance,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expectedAmount != null">
+				expected_amount = #{expectedAmount,jdbcType=BIGINT},
+			</if>
+			<if test="gmtRemittance != null">
+				gmt_remittance = #{gmtRemittance,jdbcType=TIMESTAMP},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="bankSerialNo != null">
+				bank_serial_no = #{bankSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="outherStatus != null">
+				outherStatus = #{outherStatus,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		update t_financing_user_remittance
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		financing_user_id =
+		#{financingUserId,jdbcType=BIGINT},
+		contract_id =
+		#{contractId,jdbcType=BIGINT},
+		product_id =
+		#{productId,jdbcType=BIGINT},
+		gmt_expected_remittance =
+		#{gmtExpectedRemittance,jdbcType=TIMESTAMP},
+		expected_amount =
+		#{expectedAmount,jdbcType=BIGINT},
+		gmt_remittance =
+		#{gmtRemittance,jdbcType=TIMESTAMP},
+		amount =
+		#{amount,jdbcType=BIGINT},
+		bank_serial_no =
+		#{bankSerialNo,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		outherStatus = #{outherStatus,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+
+	<select id="listByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.FinancingUserRemittanceDto"
+		parameterType="com.ruixun.sincfin.domain.query.FinancingUserRemittanceQuery">
+		select
+		fur.id, fur.gmt_create, fur.financing_user_id, fur.contract_id,
+		fur.product_id,
+		fur.expected_amount, fur.status, p.title as
+		product_title,
+		c.title as contract_title, c.amount as contract_amount
+		from t_financing_user_remittance fur
+		left join t_product p on
+		fur.product_id = p.id
+		left join t_contract c on fur.contract_id = c.id
+		where fur.deleted_flag = 0
+		<if test="financingUserId != null">
+			and fur.financing_user_id = #{financingUserId}
+		</if>
+		<if test="gmtStartCreate != null">
+			and fur.gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and fur.gmt_create &lt; #{gmtEndCreate}
+		</if>
+		order by fur.id desc
+	</select>
+	<update id="updateFinancingRemittanceStatus"
+		parameterType="com.ruixun.sincfin.domain.entity.FinancingUserRemittanceEntity">
+		update t_financing_user_remittance set
+		`status`='remittance'
+		,gmt_modified=CURRENT_TIMESTAMP,gmt_remittance=CURRENT_TIMESTAMP,amount=#{amount} where
+		product_id=#{productId}
+	</update>
+
+
+
+</mapper>

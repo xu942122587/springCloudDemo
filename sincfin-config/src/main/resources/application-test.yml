@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://git.zhaotool.com/liulihai/tuyue-tucfin-config.git
+          searchPaths: tuyue-tucfin-config
+          ignoreLocalSshSettings: true
+          username: 263562784@qq.com
+          password: 1q2w3e4r5t
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:1112
+server:
+  port: 9094
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,refresh,health
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always

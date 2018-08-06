@@ -1,0 +1,73 @@
+server:
+  port: 9194
+spring:
+  profiles: dev
+  application:
+    name: sincfin-message, message-server
+  cloud:
+    config:
+      enabled: false
+  boot:
+    admin:
+      client:
+        enabled: false
+  redis:
+    host: 193.112.122.153
+    port: 6379
+    password: Yydsp123
+  rabbitmq:
+    addresses: amqp://47.97.185.147:5672
+    username: root
+    password: rx123456
+  autoconfigure:
+    exclude: org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.96.122.79:3306/sincfin?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    username: dev1
+    password: abc123
+  stream:
+    bindings:
+      app-push-input:
+        destination: sincfin.message.app.test
+        group: sincfin-message
+        consumer:
+          max-attempts: 1
+      msn-push-input:
+        destination: sincfin.message.msn.test
+        group: sincfin-message
+        consumer:
+          max-attempts: 1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+#请求处理的超时时间
+ribbon:
+  read_timeout: 3000
+#请求连接的超时时间
+  connect_timeout: 3000
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.ruixun.sincfin.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+message:
+  msn:
+    regex:
+      mobile: ^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0-9]|18[0-9]|19[89])\d{8}$
+    ym:
+      host: shmtn.b2m.cn
+      port: 80
+      app-id:
+        channel0: EUCP-EMY-SMS1-1YQWY
+        channel1: EUCP-EMY-SMS1-9SVQK
+      secret-key:
+        channel0: DC913F0A4D0D384B
+        channel1: 440269
+      prefix: 【诚意金融】
+  app:
+    jpush:
+      secrets: 7a3509b3e3581f13c1b29540
+      app-key: 3018fd83b8aa5003f9d5ae37
+      apns: false

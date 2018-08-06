@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.basic.mapper.AppVersionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.AppVersionEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="version_code" property="versionCode"
+			jdbcType="INTEGER" />
+		<result column="version_name" property="versionName"
+			jdbcType="VARCHAR" />
+		<result column="channel_id" property="channelId"
+			jdbcType="BIGINT" />
+		<result column="download_link" property="downloadLink"
+			jdbcType="VARCHAR" />
+		<result column="upgrade_type" property="upgradeType"
+			jdbcType="VARCHAR" />
+		<result column="device_type" property="deviceType"
+			jdbcType="VARCHAR" />
+		<result column="hint" property="hint" jdbcType="VARCHAR" />
+		<result column="description" property="description"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, version_code,
+		version_name ,
+		channel_id, download_link, upgrade_type,
+		device_type,
+		hint, description, status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_app_version
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.AppVersionEntity">
+		insert into t_app_version (id, gmt_create, gmt_modified,
+		deleted_flag, version_code, version_name, channel_id,
+		download_link,
+		upgrade_type, device_type,
+		hint, description, status
+		)
+		values
+		(#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT},
+		#{versionCode,jdbcType=INTEGER}, #{versionName,jdbcType=VARCHAR},
+		#{channelId,jdbcType=BIGINT},
+		#{downloadLink,jdbcType=VARCHAR},
+		#{upgradeType,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR},
+		#{hint,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AppVersionEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into t_app_version
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="versionCode != null">
+				version_code,
+			</if>
+			<if test="versionName != null">
+				version_name,
+			</if>
+			<if test="channelId != null">
+				channel_id,
+			</if>
+			<if test="downloadLink != null">
+				download_link,
+			</if>
+			<if test="upgradeType != null">
+				upgrade_type,
+			</if>
+			<if test="deviceType != null">
+				device_type,
+			</if>
+			<if test="hint != null">
+				hint,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="versionCode != null">
+				#{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="versionName != null">
+				#{versionName,jdbcType=VARCHAR},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=BIGINT},
+			</if>
+			<if test="downloadLink != null">
+				#{downloadLink,jdbcType=VARCHAR},
+			</if>
+			<if test="upgradeType != null">
+				#{upgradeType,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceType != null">
+				#{deviceType,jdbcType=VARCHAR},
+			</if>
+			<if test="hint != null">
+				#{hint,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AppVersionEntity">
+		update t_app_version
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="versionCode != null">
+				version_code = #{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="versionName != null">
+				version_name = #{versionName,jdbcType=VARCHAR},
+			</if>
+			<if test="channelId != null">
+				channel_id = #{channelId,jdbcType=BIGINT},
+			</if>
+			<if test="downloadLink != null">
+				download_link = #{downloadLink,jdbcType=VARCHAR},
+			</if>
+			<if test="upgradeType != null">
+				upgrade_type = #{upgradeType,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceType != null">
+				device_type = #{deviceType,jdbcType=VARCHAR},
+			</if>
+			<if test="hint != null">
+				hint = #{hint,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.AppVersionEntity">
+		update t_app_version
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		version_code =
+		#{versionCode,jdbcType=INTEGER},
+		version_name =
+		#{versionName,jdbcType=VARCHAR},
+		channel_id =
+		#{channelId,jdbcType=BIGINT},
+		download_link =
+		#{downloadLink,jdbcType=VARCHAR},
+		upgrade_type =
+		#{upgradeType,jdbcType=VARCHAR},
+		device_type =
+		#{deviceType,jdbcType=VARCHAR},
+		hint = #{hint,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="listByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.AppVersionDto"
+		parameterType="com.ruixun.sincfin.domain.query.AppVersionQuery">
+		select
+		av.id, av.gmt_create, av.version_code, av.version_name,
+		av.channel_id, av.download_link, av.upgrade_type,
+		av.device_type,
+		av.hint, av.description, av.status, c.name as channel_name
+		from
+		t_app_version av
+		left join t_channel c on av.channel_id = c.id
+		where
+		av.deleted_flag = 0
+		<if test="versionName != null and versionName != ''">
+			and av.version_name = #{versionName}
+		</if>
+		<if test="status != null and status != ''">
+			and av.status = #{status}
+		</if>
+		order by av.id desc
+	</select>
+
+	<select id="getMaxVersion" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app_version
+		where deleted_flag = 0 and status = 'shelve'
+		and
+		device_type = #{deviceType}
+		<if test="channelId != null and channelId != ''">
+			AND channel_id= #{channelId}
+		</if>
+		order by version_code desc , gmt_modified desc
+		limit 0,1
+	</select>
+
+
+</mapper>

@@ -1,0 +1,74 @@
+server:
+  port: 9090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+spring:
+  application:
+    name: sincfin-biz-dev
+  profiles: dev
+  cloud:
+    config:
+      enabled: false
+  boot:
+    admin:
+      client:
+        enabled: false
+  redis:
+    host: 118.31.22.118
+    port: 6381
+    password: 1q2w3e4r5t@2018
+  rabbitmq:
+    addresses: amqp://118.31.22.118:5672
+    username: pdd
+    password: pdd123456
+  autoconfigure:
+    exclude: org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://118.31.22.118:3306/sincfin?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: piaodada@1
+biz:
+  feign:
+    name: sincfin-biz-dev
+ribbon:
+  read_timeout: 3000
+  connect_timeout: 3000
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.ruixun.sincfin.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+sincfin:
+  pay:
+    fuiou:
+      mchnt:
+        cd: 0002900F0096235
+        key: 5old71wihg2tqjug9kkpxnhx9hiujoqj
+      api:
+        host: http://www-1.fuiou.com:18670/mobile_pay
+      back:
+        url: http://api.test.sincfin.cn
+aliyun:
+  oss:
+    endpoint: http://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAIedaKXgvYKuWk
+    accessKeySecret: dnZQyQJl2UxHRx0pRND0HLlxKidsF8
+    bucketPrivate: tuyue-service-private-test
+    bucketPublic: tuyue-service-public-test
+    bucketPrivateDomain: https://tuyue-service-private-test.oss-cn-hangzhou.aliyuncs.com
+    bucketPublicDomain: https://tuyue-service-public-test.oss-cn-hangzhou.aliyuncs.com
+    callbackHost: http://118.31.22.118:9092
+    privateExpiry: 1800000
+  sts:
+    endpoint: sts.aliyuncs.com
+    roleArn: acs:ram::1937730151667471:role/aliyunosstokengeneratorrole
+    roleSessionName: external-username
+    durationSeconds: 3600
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,refresh

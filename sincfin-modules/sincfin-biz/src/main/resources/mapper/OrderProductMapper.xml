@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.order.mapper.OrderProductMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.OrderProductEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
+    <result column="gmt_value_date" property="gmtValueDate" jdbcType="TIMESTAMP" />
+    <result column="gmt_expiration_date" property="gmtExpirationDate" jdbcType="TIMESTAMP" />
+    <result column="total_interest_rate" property="totalInterestRate" jdbcType="DECIMAL" />
+    <result column="subsidy_interest_rate" property="subsidyInterestRate" jdbcType="DECIMAL" />
+    <result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+    <result column="value_date_method" property="valueDateMethod" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_id, order_num, product_id,
+    product_title, gmt_value_date, gmt_expiration_date, total_interest_rate,
+    subsidy_interest_rate, time_limit, value_date_method
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.OrderProductEntity" >
+    insert into t_order_product (id, gmt_create, gmt_modified, 
+      deleted_flag, user_id, order_num, product_id, product_title,
+      gmt_value_date, gmt_expiration_date, total_interest_rate, subsidy_interest_rate,
+      time_limit, value_date_method)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{orderNum,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=BIGINT}, #{productTitle,jdbcType=VARCHAR}, #{gmtValueDate,jdbcType=TIMESTAMP},
+      #{gmtExpirationDate,jdbcType=TIMESTAMP},
+      #{totalInterestRate,jdbcType=DECIMAL}, #{subsidyInterestRate,jdbcType=DECIMAL},
+      #{timeLimit,jdbcType=INTEGER}, #{valueDateMethod,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.OrderProductEntity" >
+    insert into t_order_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productTitle != null" >
+        product_title,
+      </if>
+      <if test="gmtValueDate != null" >
+        gmt_value_date,
+      </if>
+      <if test="gmtExpirationDate != null" >
+        gmt_expiration_date,
+      </if>
+      <if test="totalInterestRate != null" >
+        total_interest_rate,
+      </if>
+      <if test="subsidyInterestRate != null" >
+        subsidy_interest_rate,
+      </if>
+      <if test="timeLimit != null" >
+        time_limit,
+      </if>
+      <if test="valueDateMethod != null" >
+        value_date_method,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productTitle != null" >
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtValueDate != null" >
+        #{gmtValueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtExpirationDate != null" >
+        #{gmtExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalInterestRate != null" >
+        #{totalInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidyInterestRate != null" >
+        #{subsidyInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="valueDateMethod != null" >
+        #{valueDateMethod,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.OrderProductEntity" >
+    update t_order_product
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productTitle != null" >
+        product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtValueDate != null" >
+        gmt_value_date = #{gmtValueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtExpirationDate != null" >
+        gmt_expiration_date = #{gmtExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalInterestRate != null" >
+        total_interest_rate = #{totalInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidyInterestRate != null" >
+        subsidy_interest_rate = #{subsidyInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="valueDateMethod != null" >
+        value_date_method = #{valueDateMethod,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.OrderProductEntity" >
+    update t_order_product
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      product_title = #{productTitle,jdbcType=VARCHAR},
+      gmt_value_date = #{gmtValueDate,jdbcType=TIMESTAMP},
+      gmt_expiration_date = #{gmtExpirationDate,jdbcType=TIMESTAMP},
+      total_interest_rate = #{totalInterestRate,jdbcType=DECIMAL},
+      subsidy_interest_rate = #{subsidyInterestRate,jdbcType=DECIMAL},
+      time_limit = #{timeLimit,jdbcType=INTEGER},
+      value_date_method = #{valueDateMethod,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

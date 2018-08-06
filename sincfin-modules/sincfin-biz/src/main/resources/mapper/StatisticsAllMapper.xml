@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.statistics.mapper.StatisticsAllMapper">
+	
+	<select id="accountStatistics" resultType="java.util.Map">
+		select (sum(IFNULL(wallet_balance,0))+sum(IFNULL(current_investment_amount,0))) as sumPlatformStock,
+			sum(IFNULL(wallet_balance,0)) as sumPlatformAccountBalance
+		from t_account where deleted_flag='0'
+	</select>
+	
+	<select id="platformInvestStatistics" resultType="java.util.Map">
+		select SUM(IFNULL(amount,0)) as sumPlatformInvest from t_order where deleted_flag='0' and `status`='payment_success'
+	</select>
+	
+	<select id="monthPlatformInvestStatistics" resultType="java.util.Map">
+		select SUM(IFNULL(amount,0)) as monthPlatformInvest from t_order 
+		where deleted_flag='0' and `status`='payment_success' 
+			and DATE_FORMAT( gmt_create, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+	</select>
+
+	<select id="monthPlatformStockStatistics" resultType="java.util.Map">
+		select (sum(IFNULL(wallet_balance,0))+sum(IFNULL(current_investment_amount,0))) as monthPlatformStock
+		from t_account where deleted_flag='0'
+						and DATE_FORMAT( gmt_create, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+	</select>
+	
+	<select id="oneAverageInvestStatistics" resultType="java.util.Map">
+		select convert(SUM(amount)/COUNT(id),decimal(10,2)) as oneAverageInvest from t_order where deleted_flag='0'
+	</select>
+	
+	<select id="peopleInvestAndCountStatistics" resultType="java.util.Map">
+		select  (convert(b.sumAmount/COUNT(a.userCount),decimal(10,2))) as peopleInvest , (convert(b.sumCount/COUNT(a.userCount),decimal(10,2))) as peopleInvestCount from 
+			(select COUNT(user_id) as userCount FROM t_order where deleted_flag='0' and `status`='payment_success'  GROUP BY user_id) as a ,
+				(select COUNT(id) as sumCount,SUM(amount) as sumAmount from t_order where deleted_flag='0' and `status`='payment_success' ) as b
+	</select>
+	
+	<select id="peopleAddLoyalTimeStatistics" resultType="java.util.Map">
+		select convert(SUM(tOP.time_limit)/COUNT(tOrder.id),decimal(10,2)) as peopleAddLoyalTime from t_order as tOrder , t_order_product as tOP where tOP.order_num=tOrder.order_num 
+			and tOrder.deleted_flag='0' and tOrder.`status`!='non_payment' and tOP.deleted_flag='0'
+	</select>
+	
+	<select id="peopleIntervalTimeStatistics" resultType="java.util.Map">
+		select avg(TIMESTAMPDIFF(MINUTE,ascOrder.gmt_create,descOrder.gmt_create)/24) as peopleIntervalTime from 
+					(select min(gmt_create) as gmt_create,user_id,id from t_order where deleted_flag='0' and `status`!='non_payment' 
+						and user_id in (select tUser.id from t_user as tUser, t_order as tOrder,(select COUNT(id) as countId,user_id from t_order where deleted_flag='0' and `status`='payment_success' GROUP BY user_id) as userIdCount 
+							where tOrder.user_id=tUser.id and userIdCount.user_id=tUser.id and userIdCount.countId>1 GROUP BY tUser.id) 
+								GROUP BY user_id) as ascOrder,
+					(select max(gmt_create) as gmt_create,user_id,id from t_order where deleted_flag='0' and `status`!='non_payment' 
+								and user_id in (select tUser.id from t_user as tUser, t_order as tOrder,(select COUNT(id) as countId,user_id from t_order where deleted_flag='0' and `status`='payment_success' GROUP BY user_id) as userIdCount 
+									where tOrder.user_id=tUser.id and userIdCount.user_id=tUser.id and userIdCount.countId>1 GROUP BY tUser.id) 
+ 										GROUP BY user_id) as descOrder where ascOrder.user_id=descOrder.user_id
+	</select>
+	
+	<select id="peopleInvestCountStatistics" resultType="java.util.Map">
+		select avg(a.orderCount) as peopleInvestCount from (select COUNT(id) as orderCount from t_order where deleted_flag='0' and `status`!='non_payment' GROUP BY user_id) as a
+	</select>
+	
+	<select id="peopleInvestMoneyStatistics" resultType="java.util.Map">
+		select avg(a.sumAmount) as peopleInvestMoney from (select sum(amount) as sumAmount from t_order where deleted_flag='0' and `status`='payment_success' GROUP BY user_id) as a
+	</select>
+	
+	<select id="sumPeopleRegistStatistics" resultType="java.util.Map">
+		select COUNT(id) as sumPeopleRegist from t_user where deleted_flag='0' and `status`='normal'
+	</select>
+	
+	<select id="sumPeopleInvestStatistics" resultType="java.util.Map">
+		select COUNT(id) as sumPeopleInvest from t_order where deleted_flag='0' and `status`!='non_payment'
+	</select>
+	
+	<select id="sumPlatformPeopleInvestStatistics" resultType="java.util.Map">
+		select count(*) as sumPlatformPeopleInvest from (select COUNT(id) as orderCount from t_order where deleted_flag='0' and `status`!='non_payment' GROUP BY user_id) as a
+	</select>
+	
+	
+</mapper>

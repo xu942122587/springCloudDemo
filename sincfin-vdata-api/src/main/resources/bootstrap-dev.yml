@@ -1,0 +1,87 @@
+server:
+  port: 9086
+spring:
+  application:
+    name: vdata-api
+  profiles: dev
+  cloud:
+    config:
+      enabled: false
+  mail:
+    host: smtp.exmail.qq.com
+    port: 465
+    protocol: smtp
+    username: null
+    password: null
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+        starttls:
+          enable: true
+          required: true
+  boot:
+    admin:
+      client:
+        enabled: false
+  stream:
+    bindings:
+      app-push-output:
+        destination: sincfin.message.app.test
+        group: sincfin-message
+      msn-push-output:
+        destination: sincfin.message.msn.test
+        group: sincfin-message
+  redis:
+    host: 118.31.22.118
+    port: 6381
+    password: 1q2w3e4r5t@2018
+  rabbitmq:
+    addresses: amqp://118.31.22.118:5672
+    username: pdd
+    password: pdd123456
+  autoconfigure:
+    exclude: org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://118.31.22.118:3306/sincfin?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: piaodada@1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+biz:
+  feign:
+    name: sincfin-biz-dev
+ribbon:
+  read_timeout: 3000
+  connect_timeout: 3000
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.ruixun.sincfin.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+sincfin:
+  sms:
+    send:
+      open: false
+    code:
+      validate: false
+      defaultValue: '000000'
+  risk:
+    test:
+      url: http://testweb.piaodadalicai.com/tuyue-wap/dist/views/risk_exam.html
+xxl:
+  job:
+    executor:
+      appname: sincfin-admin-dev
+      ip: null
+      port: 9999
+      logpath: /opt/web/deploy/logs/xxl-job/
+      logretentiondays: 1
+    admin:
+      addresses: http://47.100.227.217:8010/job
+    accessToken: ay5AB=1vN.e

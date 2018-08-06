@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.account.mapper.AccountRepaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.AccountRepaymentEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="gmt_repayment" property="gmtRepayment" jdbcType="TIMESTAMP" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="principal" property="principal" jdbcType="BIGINT" />
+    <result column="interest" property="interest" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_id, account_id,
+    product_id, order_num,
+    gmt_repayment, amount, principal, interest, type, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_account_repayment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.AccountRepaymentEntity" >
+    insert into t_account_repayment (id, gmt_create, gmt_modified,
+    deleted_flag, user_id, account_id, product_id,
+    investment_order_num, gmt_repayment, amount,
+    type, status
+    )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP},
+    #{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT},
+    #{orderNum,jdbcType=VARCHAR}, #{gmtRepayment,jdbcType=TIMESTAMP}, #{amount,jdbcType=BIGINT},
+    #{principal,jdbcType=BIGINT}, #{interest,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.AccountRepaymentEntity" >
+    insert into t_account_repayment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="gmtRepayment != null" >
+        gmt_repayment,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtRepayment != null" >
+        #{gmtRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.AccountRepaymentEntity" >
+    update t_account_repayment
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtRepayment != null" >
+        gmt_repayment = #{gmtRepayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.AccountRepaymentEntity" >
+    update t_account_repayment
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      gmt_repayment = #{gmtRepayment,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=BIGINT},
+      principal = #{principal,jdbcType=BIGINT},
+      interest = #{interest,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.AccountRepaymentDto"
+          parameterType="com.ruixun.sincfin.domain.query.AccountRepaymentQuery" >
+    select ar.id, ar.gmt_create, ar.user_id, ar.account_id, ar.product_id,
+      ar.order_num, ar.gmt_repayment, ar.amount, ar.principal, ar.interest,
+      ar.type, ar.status, u.real_name as user_real_name,
+      u.mobile as user_mobile
+    from t_account_repayment ar
+      left join t_user u on ar.user_id = u.id
+    where ar.deleted_flag = 0
+    <if test="userRealName != null and userRealName != ''">
+      and u.real_name = #{userRealName}
+    </if>
+    <if test="userMobile != null and userMobile != ''">
+      and u.mobile = #{userMobile}
+    </if>
+    <if test="orderNum != null and orderNum != ''">
+      and ar.order_num = #{orderNum}
+    </if>
+    <if test="userId != null">
+      and ar.user_id = #{userId}
+    </if>
+    <if test="productId != null">
+      and ar.product_id = #{productId}
+    </if>
+    <if test="status != null and status != ''">
+      and ar.status = #{status}
+    </if>
+    <if test="gmtStartRepayment != null">
+      and ar.gmt_repayment >= #{gmtStartRepayment}
+    </if>
+    <if test="gmtEndRepayment != null">
+      and ar.gmt_repayment &lt; #{gmtEndRepayment}
+    </if>
+    order by ar.id desc
+  </select>
+
+  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id" parameterType="List">
+    insert into t_account_repayment
+    (user_id, account_id, product_id, order_num, gmt_repayment, amount, principal, interest, type, status)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.userId}, #{item.accountId}, #{item.productId}, #{item.orderNum},
+      #{item.gmtRepayment}, #{item.amount}, #{item.principal}, #{item.interest},
+      #{item.type}, #{item.status}
+      )
+    </foreach>
+  </insert>
+
+</mapper>

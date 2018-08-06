@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.contract.mapper.ContractMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.ContractEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="contract_template_id" property="contractTemplateId" jdbcType="BIGINT" />
+    <result column="financing_user_id" property="financingUserId" jdbcType="BIGINT" />
+    <result column="repayment_type" property="repaymentType" jdbcType="VARCHAR" />
+    <result column="interest_rate" property="interestRate" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="usable_balance" property="usableBalance" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="BIGINT" />
+    <result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+    <result column="product_count" property="productCount" jdbcType="INTEGER" />
+    <result column="gmt_start" property="gmtStart" jdbcType="TIMESTAMP" />
+    <result column="gmt_end" property="gmtEnd" jdbcType="TIMESTAMP" />
+    <result column="security_level" property="securityLevel" jdbcType="INTEGER" />
+    <result column="service_agreement" property="serviceAgreement" jdbcType="VARCHAR" />
+    <result column="project_intro" property="projectIntro" jdbcType="VARCHAR" />
+    <result column="loan_use" property="loanUse" jdbcType="VARCHAR" />
+    <result column="guarantee_company" property="guaranteeCompany" jdbcType="VARCHAR" />
+    <result column="legal_basis" property="legalBasis" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, title, contract_template_id, financing_user_id, 
+    repayment_type, interest_rate, amount, usable_balance, balance, time_limit, product_count, 
+    gmt_start, gmt_end, security_level, service_agreement, project_intro, loan_use, guarantee_company, 
+    legal_basis, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.ContractEntity" >
+    insert into t_contract (id, gmt_create, gmt_modified, 
+      deleted_flag, title, contract_template_id, 
+      financing_user_id, repayment_type, interest_rate, 
+      amount, usable_balance, balance, 
+      time_limit, product_count, gmt_start, 
+      gmt_end, security_level, service_agreement, 
+      project_intro, loan_use, guarantee_company, 
+      legal_basis, status)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{title,jdbcType=VARCHAR}, #{contractTemplateId,jdbcType=BIGINT}, 
+      #{financingUserId,jdbcType=BIGINT}, #{repaymentType,jdbcType=VARCHAR}, #{interestRate,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=BIGINT}, #{usableBalance,jdbcType=BIGINT}, #{balance,jdbcType=BIGINT}, 
+      #{timeLimit,jdbcType=INTEGER}, #{productCount,jdbcType=INTEGER}, #{gmtStart,jdbcType=TIMESTAMP}, 
+      #{gmtEnd,jdbcType=TIMESTAMP}, #{securityLevel,jdbcType=INTEGER}, #{serviceAgreement,jdbcType=VARCHAR}, 
+      #{projectIntro,jdbcType=VARCHAR}, #{loanUse,jdbcType=VARCHAR}, #{guaranteeCompany,jdbcType=VARCHAR}, 
+      #{legalBasis,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.ContractEntity"
+          useGeneratedKeys="true" keyProperty="id" >
+    insert into t_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="contractTemplateId != null" >
+        contract_template_id,
+      </if>
+      <if test="financingUserId != null" >
+        financing_user_id,
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="usableBalance != null" >
+        usable_balance,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="timeLimit != null" >
+        time_limit,
+      </if>
+      <if test="productCount != null" >
+        product_count,
+      </if>
+      <if test="gmtStart != null" >
+        gmt_start,
+      </if>
+      <if test="gmtEnd != null" >
+        gmt_end,
+      </if>
+      <if test="securityLevel != null" >
+        security_level,
+      </if>
+      <if test="serviceAgreement != null" >
+        service_agreement,
+      </if>
+      <if test="projectIntro != null" >
+        project_intro,
+      </if>
+      <if test="loanUse != null" >
+        loan_use,
+      </if>
+      <if test="guaranteeCompany != null" >
+        guarantee_company,
+      </if>
+      <if test="legalBasis != null" >
+        legal_basis,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTemplateId != null" >
+        #{contractTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="financingUserId != null" >
+        #{financingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="repaymentType != null" >
+        #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="usableBalance != null" >
+        #{usableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="productCount != null" >
+        #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="gmtStart != null" >
+        #{gmtStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtEnd != null" >
+        #{gmtEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="securityLevel != null" >
+        #{securityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="serviceAgreement != null" >
+        #{serviceAgreement,jdbcType=VARCHAR},
+      </if>
+      <if test="projectIntro != null" >
+        #{projectIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null" >
+        #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompany != null" >
+        #{guaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasis != null" >
+        #{legalBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.ContractEntity" >
+    update t_contract
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTemplateId != null" >
+        contract_template_id = #{contractTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="financingUserId != null" >
+        financing_user_id = #{financingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type = #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="usableBalance != null" >
+        usable_balance = #{usableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="productCount != null" >
+        product_count = #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="gmtStart != null" >
+        gmt_start = #{gmtStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtEnd != null" >
+        gmt_end = #{gmtEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="securityLevel != null" >
+        security_level = #{securityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="serviceAgreement != null" >
+        service_agreement = #{serviceAgreement,jdbcType=VARCHAR},
+      </if>
+      <if test="projectIntro != null" >
+        project_intro = #{projectIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null" >
+        loan_use = #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompany != null" >
+        guarantee_company = #{guaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasis != null" >
+        legal_basis = #{legalBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.ContractEntity" >
+    update t_contract
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      title = #{title,jdbcType=VARCHAR},
+      contract_template_id = #{contractTemplateId,jdbcType=BIGINT},
+      financing_user_id = #{financingUserId,jdbcType=BIGINT},
+      repayment_type = #{repaymentType,jdbcType=VARCHAR},
+      interest_rate = #{interestRate,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=BIGINT},
+      usable_balance = #{usableBalance,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=BIGINT},
+      time_limit = #{timeLimit,jdbcType=INTEGER},
+      product_count = #{productCount,jdbcType=INTEGER},
+      gmt_start = #{gmtStart,jdbcType=TIMESTAMP},
+      gmt_end = #{gmtEnd,jdbcType=TIMESTAMP},
+      security_level = #{securityLevel,jdbcType=INTEGER},
+      service_agreement = #{serviceAgreement,jdbcType=VARCHAR},
+      project_intro = #{projectIntro,jdbcType=VARCHAR},
+      loan_use = #{loanUse,jdbcType=VARCHAR},
+      guarantee_company = #{guaranteeCompany,jdbcType=VARCHAR},
+      legal_basis = #{legalBasis,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.ContractDto"
+          parameterType="com.ruixun.sincfin.domain.query.ContractQuery" >
+    select
+      c.id, c.gmt_create, c.title, c.contract_template_id, c.financing_user_id,
+      c.repayment_type, c.interest_rate, c.amount, c.usable_balance, c.balance, c.time_limit, c.product_count,
+      c.gmt_start, c.gmt_end, c.security_level, c.service_agreement, c.project_intro, c.loan_use, c.guarantee_company,
+      c.legal_basis, c.status, fu.real_name as financing_user_real_name
+    from t_contract c
+      left join t_financing_user fu on c.financing_user_id = fu.id
+    where c.deleted_flag = 0
+      <if test="title != null and title != ''">
+        and c.title like concat('%',#{title},'%')
+      </if>
+      <if test="financingUserRealName != null and financingUserRealName != ''">
+        and fu.real_name like concat('%',#{financingUserRealName},'%')
+      </if>
+      <if test="repaymentType != null and repaymentType != ''">
+        and c.repayment_type = #{repaymentType}
+      </if>
+      <if test="gmtStartStart != null">
+        and c.gmt_start >= #{gmtStartStart}
+      </if>
+      <if test="gmtEndStart != null">
+        and c.gmt_start &lt; #{gmtEndStart}
+      </if>
+      <if test="gmtStartEnd != null">
+        and c.gmt_end >= #{gmtStartEnd}
+      </if>
+      <if test="gmtEndEnd != null">
+        and c.gmt_end &lt; #{gmtEndEnd}
+      </if>
+    order by c.id desc
+  </select>
+
+  <update id="deleteById">
+    update t_contract
+    set deleted_flag = 1
+    where id = #{id}
+  </update>
+
+  <update id="updateUsableBalance" >
+    update t_contract
+    set usable_balance = usable_balance + #{usableBalance}
+    where deleted_flag = 0 and id = #{id}
+  </update>
+
+  <update id="updateProductCount" >
+    update t_contract
+    set product_count = product_count + #{productCount}
+    where deleted_flag = 0 and id = #{id}
+  </update>
+
+</mapper>

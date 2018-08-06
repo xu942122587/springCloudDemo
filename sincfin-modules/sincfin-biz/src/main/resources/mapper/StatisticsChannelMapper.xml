@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.statistics.mapper.StatisticsChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.StatisticsChannelEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="activate_count" property="activateCount" jdbcType="INTEGER" />
+    <result column="register_count" property="registerCount" jdbcType="INTEGER" />
+    <result column="first_investment_count" property="firstInvestmentCount" jdbcType="INTEGER" />
+    <result column="first_investment_amount" property="firstInvestmentAmount" jdbcType="BIGINT" />
+    <result column="total_investment_amount" property="totalInvestmentAmount" jdbcType="BIGINT" />
+    <result column="current_stock" property="currentStock" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, channel_id, activate_count, register_count, 
+    first_investment_count, first_investment_amount, total_investment_amount, current_stock
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_statistics_channel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.StatisticsChannelEntity" >
+    insert into t_statistics_channel (id, gmt_create, gmt_modified, 
+      deleted_flag, channel_id, activate_count, 
+      register_count, first_investment_count, first_investment_amount, 
+      total_investment_amount, current_stock
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{channelId,jdbcType=BIGINT}, #{activateCount,jdbcType=INTEGER}, 
+      #{registerCount,jdbcType=INTEGER}, #{firstInvestmentCount,jdbcType=INTEGER}, #{firstInvestmentAmount,jdbcType=BIGINT}, 
+      #{totalInvestmentAmount,jdbcType=BIGINT}, #{currentStock,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.StatisticsChannelEntity" >
+    insert into t_statistics_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="activateCount != null" >
+        activate_count,
+      </if>
+      <if test="registerCount != null" >
+        register_count,
+      </if>
+      <if test="firstInvestmentCount != null" >
+        first_investment_count,
+      </if>
+      <if test="firstInvestmentAmount != null" >
+        first_investment_amount,
+      </if>
+      <if test="totalInvestmentAmount != null" >
+        total_investment_amount,
+      </if>
+      <if test="currentStock != null" >
+        current_stock,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="activateCount != null" >
+        #{activateCount,jdbcType=INTEGER},
+      </if>
+      <if test="registerCount != null" >
+        #{registerCount,jdbcType=INTEGER},
+      </if>
+      <if test="firstInvestmentCount != null" >
+        #{firstInvestmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="firstInvestmentAmount != null" >
+        #{firstInvestmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="totalInvestmentAmount != null" >
+        #{totalInvestmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="currentStock != null" >
+        #{currentStock,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.StatisticsChannelEntity" >
+    update t_statistics_channel
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="activateCount != null" >
+        activate_count = #{activateCount,jdbcType=INTEGER},
+      </if>
+      <if test="registerCount != null" >
+        register_count = #{registerCount,jdbcType=INTEGER},
+      </if>
+      <if test="firstInvestmentCount != null" >
+        first_investment_count = #{firstInvestmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="firstInvestmentAmount != null" >
+        first_investment_amount = #{firstInvestmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="totalInvestmentAmount != null" >
+        total_investment_amount = #{totalInvestmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="currentStock != null" >
+        current_stock = #{currentStock,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.StatisticsChannelEntity" >
+    update t_statistics_channel
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      channel_id = #{channelId,jdbcType=BIGINT},
+      activate_count = #{activateCount,jdbcType=INTEGER},
+      register_count = #{registerCount,jdbcType=INTEGER},
+      first_investment_count = #{firstInvestmentCount,jdbcType=INTEGER},
+      first_investment_amount = #{firstInvestmentAmount,jdbcType=BIGINT},
+      total_investment_amount = #{totalInvestmentAmount,jdbcType=BIGINT},
+      current_stock = #{currentStock,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listChannel" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select id, id as channel_id, name as channel_name
+    from t_channel
+    where deleted_flag = 0
+    <if test="channelName != null and channelName != ''">
+      and name like concat('%',#{channelName},'%')
+    </if>
+    <if test="channelIdList != null and channelIdList.size() > 0">
+      and id in
+      <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+        #{idItem}
+      </foreach>
+    </if>
+    order by id asc
+  </select>
+
+  <select id="listRegisterCount" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select channel_id, count(channel_id) as register_count
+    from t_user
+    where deleted_flag = 0 and account_type = 'normal'
+      <if test="gmtStart != null">
+        and gmt_create >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and gmt_create &lt; #{gmtEnd}
+      </if>
+      and channel_id in
+      <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+        #{idItem}
+      </foreach>
+    group by channel_id
+  </select>
+
+  <select id="listFirstInvestmentCount" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select u.channel_id, count(u.channel_id) as first_investment_count
+    from t_user u
+    where u.deleted_flag = 0 and u.account_type = 'normal'
+      and u.channel_id is not null
+      and u.first_investment_flag = 1
+      <if test="gmtStart != null">
+        and u.gmt_first_investment >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and u.gmt_first_investment &lt; #{gmtEnd}
+      </if>
+      and u.channel_id in
+      <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+        #{idItem}
+      </foreach>
+    group by u.channel_id
+  </select>
+
+  <select id="listRepeatedlyInvestmentCount" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select t.channel_id, count(t.channel_id) as repeatedly_investment_count from  (
+      select channel_id, user_id, count(user_id) as invertment_count
+      from t_user u
+        left join t_order o on u.id = o.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and o.deleted_flag = 0
+        and (o.status = 'payment_success' or o.status = 'repayment')
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+        <if test="gmtStart != null">
+          and o.gmt_create >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and o.gmt_create &lt; #{gmtEnd}
+        </if>
+      group by u.channel_id, o.user_id
+      having invertment_count > 1
+    ) t group by t.channel_id
+  </select>
+
+  <select id="listFirstInvestmentAmount" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select u.channel_id, sum(o.amount) as first_investment_amount
+    from (
+      select o.user_id, u.channel_id, min(o.id) as order_id
+      from t_user u
+        left join t_order o on u.id = o.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and o.deleted_flag = 0
+        and (o.status = 'payment_success' or o.status = 'repayment')
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+        <if test="gmtStart != null">
+          and o.gmt_create >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and o.gmt_create &lt; #{gmtEnd}
+        </if>
+      group by o.user_id, u.channel_id
+    ) t
+      left join t_order o on t.order_id = o.id
+      left join t_user u on o.user_id = u.id
+    group by u.channel_id
+  </select>
+
+  <select id="listTotalInvestmentAmount" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select u.channel_id, sum(o.amount) as total_investment_amount
+    from t_user u
+      left join t_order o on u.id = o.user_id
+    where u.deleted_flag = 0 and u.account_type = 'normal'
+      and u.channel_id is not null
+      and u.first_investment_flag = 1
+      and o.deleted_flag = 0
+      and (o.status = 'payment_success' or o.status = 'repayment')
+      <if test="gmtStart != null">
+        and u.gmt_first_investment >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and u.gmt_first_investment &lt; #{gmtEnd}
+      </if>
+      and u.channel_id in
+      <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+        #{idItem}
+      </foreach>
+      <if test="gmtStart != null">
+        and o.gmt_create >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and o.gmt_create &lt; #{gmtEnd}
+      </if>
+    group by u.channel_id
+  </select>
+
+  <select id="listTimeIntervalStock" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select r.channel_id, ifnull(r.recharge_amount, 0) + ifnull(c.cash_back_amount, 0) +
+      ifnull(ca.coupon_amount, 0) - ifnull(wa.withdraw_amount, 0) as time_interval_stock
+    from (
+      select u.channel_id, ifnull(sum(amr.amount), 0) as recharge_amount
+      from t_user u
+        left join t_account_money_record amr on u.id = amr.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and amr.type = 'recharge'
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+          and amr.gmt_create &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      group by u.channel_id
+    ) r left join (
+      select u.channel_id, ifnull(sum(amr.amount), 0) as cash_back_amount
+      from t_user u
+        left join t_account_money_record amr on u.id = amr.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and amr.type = 'cash_back'
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+          and amr.gmt_create &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      group by u.channel_id
+    ) c on r.channel_id = c.channel_id
+    left join (
+      select u.channel_id, ifnull(sum(amr.amount), 0) as coupon_amount
+      from t_user u
+        left join t_account_money_record amr on u.id = amr.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and amr.type = 'coupon_recharge'
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+          and amr.gmt_create &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      group by u.channel_id
+    ) ca on r.channel_id = ca.channel_id
+    left join (
+      select u.channel_id, ifnull(sum(amr.amount), 0) as withdraw_amount
+      from t_user u
+        left join t_account_money_record amr on u.id = amr.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and amr.type = 'withdraw'
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+          and amr.gmt_create &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+      group by u.channel_id
+    ) wa on r.channel_id = wa.channel_id
+  </select>
+
+  <select id="listCurrentStock" resultType="com.ruixun.sincfin.domain.dto.StatisticsChannelDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select t.channel_id, sum(current_stock) as current_stock from (
+      select u.channel_id, u.id, a.wallet_balance + a.current_investment_amount + a.wait_interest as current_stock
+      from t_user u
+        left join t_account a on u.id = a.user_id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+        </if>
+        and u.channel_id in
+        <foreach collection="channelIdList" open="(" close=")" item="idItem" separator=",">
+          #{idItem}
+        </foreach>
+        ) t
+    group by t.channel_id
+  </select>
+
+  <select id="listRegisterUser" resultType="com.ruixun.sincfin.domain.dto.UserDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select id, real_name, mobile, gmt_create
+    from t_user
+    where deleted_flag = 0 and account_type = 'normal'
+      <if test="gmtStart != null">
+        and gmt_create >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and gmt_create &lt; #{gmtEnd}
+      </if>
+      and channel_id = #{channelId}
+    order by id desc
+  </select>
+
+  <select id="listFirstInvestmentUser" resultType="com.ruixun.sincfin.domain.dto.UserDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select u.id, u.real_name, u.mobile, u.gmt_create
+    from t_user u
+    where u.deleted_flag = 0 and u.account_type = 'normal'
+      and u.channel_id is not null
+      and u.first_investment_flag = 1
+      <if test="gmtStart != null">
+        and u.gmt_first_investment >= #{gmtStart}
+      </if>
+      <if test="gmtEnd != null">
+        and u.gmt_first_investment &lt; #{gmtEnd}
+      </if>
+      and u.channel_id = #{channelId}
+    order by u.id desc
+  </select>
+
+  <select id="listRepeatedlyInvestmentUser" resultType="com.ruixun.sincfin.domain.dto.UserDto"
+          parameterType="com.ruixun.sincfin.domain.query.StatisticsChannelQuery">
+    select u.id, u.real_name, u.mobile, u.gmt_create from (
+      select user_id, count(user_id) as invertment_count
+      from t_order o left join t_user u on o.user_id = u.id
+      where u.deleted_flag = 0 and u.account_type = 'normal'
+        and u.channel_id is not null
+        and u.first_investment_flag = 1
+        and o.deleted_flag = 0
+        and (o.status = 'payment_success' or o.status = 'repayment')
+        <if test="gmtStart != null">
+          and u.gmt_first_investment >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and u.gmt_first_investment &lt; #{gmtEnd}
+        </if>
+        <if test="gmtStart != null">
+          and o.gmt_create >= #{gmtStart}
+        </if>
+        <if test="gmtEnd != null">
+          and o.gmt_create &lt; #{gmtEnd}
+        </if>
+        and u.channel_id = #{channelId}
+      group by o.user_id
+      having invertment_count > 1
+    ) tmp left join t_user u on tmp.user_id = u.id
+    order by u.id desc
+  </select>
+</mapper>

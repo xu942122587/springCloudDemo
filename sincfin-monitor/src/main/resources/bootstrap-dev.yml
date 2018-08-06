@@ -1,0 +1,15 @@
+server:
+  port: 1112
+spring:
+  application:
+    name: sincfin-monitor
+  profiles: dev
+  cloud:
+    config:
+      enabled: true
+  boot:
+    admin:
+      notify:
+        dingtalk:
+          enabled: true
+          webhook: https://oapi.dingtalk.com/robot/send?access_token=c41484fca3f38af828cc5c65696022b2027b92b0d3019005ef9ff886750ca26a

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.account.mapper.AccountMoneyRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.AccountMoneyRecordEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="object_id" property="objectId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, user_id, account_id, type, object_id, 
+    title, amount, balance
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_money_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ruixun.sincfin.domain.entity.AccountMoneyRecordEntity" >
+    insert into t_account_money_record (id, gmt_create, gmt_modified, 
+      deleted_flag, user_id, account_id, 
+      type, object_id, title, 
+      amount, balance)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, 
+      #{type,jdbcType=VARCHAR}, #{objectId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=BIGINT}, #{balance,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.AccountMoneyRecordEntity" >
+    insert into t_account_money_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.AccountMoneyRecordEntity" >
+    update t_account_money_record
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="objectId != null" >
+        object_id = #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.AccountMoneyRecordEntity" >
+    update t_account_money_record
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      object_id = #{objectId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByUserIdAndType" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_money_record
+    where user_id = #{userId}
+    and type = #{type}
+  </select>
+  
+  
+  <select id="listByCondition" resultMap="BaseResultMap" parameterType="com.ruixun.sincfin.domain.query.AccountMoneyRecordQuery">
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_money_record
+    <where>
+      deleted_flag = 0
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="type != null">
+      
+      	<if test="type =='profit'">
+          and type in('principal_interest','cash_back','coupon_recharge')
+        </if>
+        <if test="type !='profit'">
+          and type = #{type}
+        </if>
+      </if>
+    </where>
+    order by gmt_create desc,id desc
+  </select>
+  
+</mapper>

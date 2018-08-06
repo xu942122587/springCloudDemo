@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.message.mapper.MessagePushMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.MessagePushEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="gmt_push" property="gmtPush" jdbcType="TIMESTAMP" />
+    <result column="jump_type" property="jumpType" jdbcType="VARCHAR" />
+    <result column="page_type" property="pageType" jdbcType="VARCHAR" />
+    <result column="external_link" property="externalLink" jdbcType="VARCHAR" />
+    <result column="user_id_list" property="userIdList" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, content, gmt_push, jump_type, page_type, 
+    external_link, user_id_list
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_message_push
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.MessagePushEntity" >
+    insert into t_message_push (id, gmt_create, gmt_modified, 
+      deleted_flag, content, gmt_push, 
+      jump_type, page_type, external_link, 
+      user_id_list)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{content,jdbcType=VARCHAR}, #{gmtPush,jdbcType=TIMESTAMP}, 
+      #{jumpType,jdbcType=VARCHAR}, #{pageType,jdbcType=VARCHAR}, #{externalLink,jdbcType=VARCHAR}, 
+      #{userIdList,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.MessagePushEntity" >
+    insert into t_message_push
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="gmtPush != null" >
+        gmt_push,
+      </if>
+      <if test="jumpType != null" >
+        jump_type,
+      </if>
+      <if test="pageType != null" >
+        page_type,
+      </if>
+      <if test="externalLink != null" >
+        external_link,
+      </if>
+      <if test="userIdList != null" >
+        user_id_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtPush != null" >
+        #{gmtPush,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jumpType != null" >
+        #{jumpType,jdbcType=VARCHAR},
+      </if>
+      <if test="pageType != null" >
+        #{pageType,jdbcType=VARCHAR},
+      </if>
+      <if test="externalLink != null" >
+        #{externalLink,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdList != null" >
+        #{userIdList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.MessagePushEntity" >
+    update t_message_push
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag = #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtPush != null" >
+        gmt_push = #{gmtPush,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jumpType != null" >
+        jump_type = #{jumpType,jdbcType=VARCHAR},
+      </if>
+      <if test="pageType != null" >
+        page_type = #{pageType,jdbcType=VARCHAR},
+      </if>
+      <if test="externalLink != null" >
+        external_link = #{externalLink,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdList != null" >
+        user_id_list = #{userIdList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.MessagePushEntity" >
+    update t_message_push
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      content = #{content,jdbcType=VARCHAR},
+      gmt_push = #{gmtPush,jdbcType=TIMESTAMP},
+      jump_type = #{jumpType,jdbcType=VARCHAR},
+      page_type = #{pageType,jdbcType=VARCHAR},
+      external_link = #{externalLink,jdbcType=VARCHAR},
+      user_id_list = #{userIdList,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

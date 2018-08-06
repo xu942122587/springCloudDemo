@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.basic.mapper.AdvertisementMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.AdvertisementEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="package_type" property="packageType" jdbcType="VARCHAR" />
+    <result column="gmt_start" property="gmtStart" jdbcType="TIMESTAMP" />
+    <result column="gmt_end" property="gmtEnd" jdbcType="TIMESTAMP" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="dialog_frequency" property="dialogFrequency" jdbcType="VARCHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, position, title, image, package_type, 
+    gmt_start, gmt_end, link, dialog_frequency, sort_no, remark, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_advertisement
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.AdvertisementEntity" >
+    insert into t_advertisement (id, gmt_create, gmt_modified, 
+      deleted_flag, position, title, 
+      image, package_type, gmt_start, 
+      gmt_end, link, dialog_frequency, 
+      sort_no, remark, status)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{position,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{packageType,jdbcType=VARCHAR}, #{gmtStart,jdbcType=TIMESTAMP}, 
+      #{gmtEnd,jdbcType=TIMESTAMP}, #{link,jdbcType=VARCHAR}, #{dialogFrequency,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.AdvertisementEntity"
+          useGeneratedKeys="true" keyProperty="id" >
+    insert into t_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="packageType != null" >
+        package_type,
+      </if>
+      <if test="gmtStart != null" >
+        gmt_start,
+      </if>
+      <if test="gmtEnd != null" >
+        gmt_end,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="dialogFrequency != null" >
+        dialog_frequency,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="packageType != null" >
+        #{packageType,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtStart != null" >
+        #{gmtStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtEnd != null" >
+        #{gmtEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="dialogFrequency != null" >
+        #{dialogFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.AdvertisementEntity" >
+    update t_advertisement
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="packageType != null" >
+        package_type = #{packageType,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtStart != null" >
+        gmt_start = #{gmtStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtEnd != null" >
+        gmt_end = #{gmtEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="dialogFrequency != null" >
+        dialog_frequency = #{dialogFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.AdvertisementEntity" >
+    update t_advertisement
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      position = #{position,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      package_type = #{packageType,jdbcType=VARCHAR},
+      gmt_start = #{gmtStart,jdbcType=TIMESTAMP},
+      gmt_end = #{gmtEnd,jdbcType=TIMESTAMP},
+      link = #{link,jdbcType=VARCHAR},
+      dialog_frequency = #{dialogFrequency,jdbcType=VARCHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.AdvertisementDto"
+          parameterType="com.ruixun.sincfin.domain.query.AdvertisementQuery" >
+    select
+    <include refid="Base_Column_List" />
+    from t_advertisement
+    where deleted_flag = 0
+    <if test="position != null and position != ''">
+      and position = #{position}
+    </if>
+    <if test="title != null and title != ''">
+      and title = #{title}
+    </if>
+    <if test="status != null and status != ''">
+      and status = #{status}
+    </if>
+    <if test="gmtStartStart != null">
+      and gmt_start >= #{gmtStartStart}
+    </if>
+    <if test="gmtEndStart != null">
+      and gmt_start &lt; #{gmtEndStart}
+    </if>
+    <if test="gmtStartEnd != null">
+      and gmt_end >= #{gmtStartEnd}
+    </if>
+    <if test="gmtEndEnd != null">
+      and gmt_end &lt; #{gmtEndEnd}
+    </if>
+    order by id desc
+  </select>
+  
+  
+  <select id="listByPosition" resultType="com.ruixun.sincfin.domain.dto.AdvertisementDto"
+          parameterType="com.ruixun.sincfin.domain.query.AdvertisementQuery" >
+    select
+    <include refid="Base_Column_List" />
+    from t_advertisement
+    where deleted_flag = 0
+      and status = 'shelve' and gmt_start <![CDATA[ <= ]]> now() and gmt_end <![CDATA[ >= ]]> now()
+      and position = #{position}
+      and locate(#{packageType},package_type)
+    order by sort_no desc
+  </select>
+
+  <update id="updateUnshelve">
+    update t_advertisement
+    set status = 'unshelve'
+    where position = #{position}
+  </update>
+
+  <select id="countByPosition" resultType="int" >
+    select count(id)
+    from t_advertisement
+    where deleted_flag = 0 and position = #{position} and status = 'shelve'
+  </select>
+
+
+	
+</mapper>

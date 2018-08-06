@@ -1,0 +1,14 @@
+server:
+  port: 9086
+spring:
+  application:
+    name: vdata-api
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      label: pcs
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.96.236.7:2222/eureka

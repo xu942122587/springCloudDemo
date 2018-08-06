@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.coupon.mapper.CouponUserMapper">
+
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.CouponUserEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="coupon_id" property="couponId"
+			jdbcType="BIGINT" />
+		<result column="gmt_validity_start" property="gmtValidityStart"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_validity_end" property="gmtValidityEnd"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_use" property="gmtUse" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="CouponUserDtoMap"
+		type="com.ruixun.sincfin.domain.dto.CouponUserDto">
+		<id column="id" property="id" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="user_id" property="userId" />
+		<result column="coupon_id" property="couponId" />
+		<result column="type" property="type" />
+		<result column="bonus_type" property="bonusType" />
+		<result column="name" property="name" />
+
+		<result column="amount" property="amount" />
+		<result column="product_type_list" property="productTypeList" />
+		<result column="limit_price" property="limitPrice" />
+		<result column="limit_days" property="limitDays" />
+		<result column="trigger_condition" property="triggerCondition" />
+
+		<result column="gmt_validity_start" property="gmtValidityStart" />
+		<result column="gmt_validity_end" property="gmtValidityEnd" />
+		<result column="gmt_use" property="gmtUse" />
+		<result column="status" property="status" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, user_id,
+		coupon_id,
+		gmt_validity_start,
+		gmt_validity_end, gmt_use, status
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_coupon_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponUserEntity">
+		insert into t_coupon_user (id, gmt_create, gmt_modified,
+		deleted_flag, user_id, coupon_id,
+		gmt_validity_start, gmt_validity_end,
+		gmt_use,
+		status)
+		values (#{id,jdbcType=BIGINT},
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT},
+		#{couponId,jdbcType=BIGINT},
+		#{gmtValidityStart,jdbcType=TIMESTAMP},
+		#{gmtValidityEnd,jdbcType=TIMESTAMP}, #{gmtUse,jdbcType=TIMESTAMP},
+		#{status,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponUserEntity">
+		insert into t_coupon_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="couponId != null">
+				coupon_id,
+			</if>
+			<if test="gmtValidityStart != null">
+				gmt_validity_start,
+			</if>
+			<if test="gmtValidityEnd != null">
+				gmt_validity_end,
+			</if>
+			<if test="gmtUse != null">
+				gmt_use,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="couponId != null">
+				#{couponId,jdbcType=BIGINT},
+			</if>
+			<if test="gmtValidityStart != null">
+				#{gmtValidityStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValidityEnd != null">
+				#{gmtValidityEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtUse != null">
+				#{gmtUse,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponUserEntity">
+		update t_coupon_user
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="couponId != null">
+				coupon_id = #{couponId,jdbcType=BIGINT},
+			</if>
+			<if test="gmtValidityStart != null">
+				gmt_validity_start =
+				#{gmtValidityStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtValidityEnd != null">
+				gmt_validity_end = #{gmtValidityEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtUse != null">
+				gmt_use = #{gmtUse,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.CouponUserEntity">
+		update t_coupon_user
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		user_id = #{userId,jdbcType=BIGINT},
+		coupon_id = #{couponId,jdbcType=BIGINT},
+		gmt_validity_start =
+		#{gmtValidityStart,jdbcType=TIMESTAMP},
+		gmt_validity_end =
+		#{gmtValidityEnd,jdbcType=TIMESTAMP},
+		gmt_use =
+		#{gmtUse,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_coupon_user
+		where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+
+	<select id="listManagerByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.CouponUserDto"
+		parameterType="com.ruixun.sincfin.domain.query.CouponUserQuery">
+		select
+		cu.id, cu.gmt_create, cu.gmt_validity_start,
+		cu.gmt_validity_end,
+		cu.gmt_use,
+		cu.status, c.name, c.amount,
+		c.product_type_list, c.limit_price, c.limit_days,
+		u.real_name as
+		user_real_name, u.mobile as user_mobile, oc.invest_money as
+		investment_amount
+		from t_coupon_user cu
+		left join t_coupon c on cu.coupon_id = c.id
+		left
+		join t_user u on cu.user_id = u.id
+		left join t_order_coupon oc on cu.id
+		= oc.user_coupon_id
+		left join t_order o on o.order_num = oc.order_num
+		where cu.deleted_flag = 0 and c.deleted_flag = 0
+		<if test="userId != null">
+			and cu.user_id = #{userId}
+		</if>
+		<if test="userRealName != null and userRealName != ''">
+			and u.real_name = #{userRealName}
+		</if>
+		<if test="userMobile != null and userMobile != ''">
+			and u.mobile = #{userMobile}
+		</if>
+		<if test="couponId != null and couponId != ''">
+			and cu.coupon_id = #{couponId}
+		</if>
+		<if test="status != null and status != ''">
+			and cu.status = #{status}
+		</if>
+		<if test="couponType != null and couponType != ''">
+			and c.type = #{couponType}
+		</if>
+		<if test="gmtStartCreate != null">
+			and cu.gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and cu.gmt_create &lt; #{gmtEndCreate}
+		</if>
+		<if test="gmtStartUse != null">
+			and cu.gmt_use >= #{gmtStartUse}
+		</if>
+		<if test="gmtEndUse != null">
+			and cu.gmt_use &lt; #{gmtEndUse}
+		</if>
+	</select>
+
+	<select id="listByUserId" resultMap="CouponUserDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.CouponUserQuery">
+		select
+		cu.id , cu.gmt_create , cu.user_id ,
+		c.id as coupon_id , c.type ,
+		c.bonus_type , c.name ,
+		c.amount , c.limit_price , c.limit_days
+		,c.trigger_condition ,
+		c.product_type_list ,
+		cu.gmt_validity_start ,
+		cu.gmt_validity_end , cu.gmt_use , cu.status
+		from t_coupon_user cu
+		left
+		join t_coupon c on cu.coupon_id = c.id
+		<where>
+			cu.deleted_flag = 0 and c.deleted_flag=0
+			<if test="userId != null">
+				and cu.user_id = #{userId}
+			</if>
+			<if test="status != null and status != ''">
+				<choose>
+					<when test="status == 'used' ">and cu.status = #{status} </when>
+					<when test="status == 'unused' ">and
+						cu.status = #{status} and cu.gmt_validity_end <![CDATA[ >= ]]>
+						now()
+					</when>
+					<when test="status == 'expired' ">and
+						(cu.status = #{status} or (cu.gmt_validity_end <![CDATA[ < ]]>
+						now() and cu.status != 'used') )
+					</when>
+				</choose>
+			</if>
+		</where>
+		order by id desc
+
+	</select>
+
+	<select id="getCouponById" resultMap="CouponUserDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.CouponUserQuery">
+		select
+		cu.id , cu.gmt_create , cu.user_id ,
+		c.id as
+		coupon_id , c.type , c.bonus_type , c.name ,
+		c.amount , c.limit_price ,
+		c.limit_days ,c.trigger_condition ,
+		c.product_type_list ,
+		cu.gmt_validity_start , cu.gmt_validity_end , cu.gmt_use , cu.status
+		from t_coupon_user cu
+		left join t_coupon c on cu.coupon_id = c.id
+		where
+		cu.id = #{id} and cu.deleted_flag = 0
+
+	</select>
+
+
+	<select id="canUseCoupon" resultType="boolean">
+		select
+		if(count(cu.id)>=1,1,0)
+		from t_coupon_user cu
+		left join t_coupon c
+		on cu.coupon_id = c.id
+		where cu.deleted_flag = 0 and c.deleted_flag=0
+		and cu.user_id = #{userId}
+		and cu.status = 'unused'
+		and
+		cu.gmt_validity_end <![CDATA[ >= ]]>
+		now()
+		and find_in_set(
+		(
+		select pt.code from t_product p
+		left join
+		t_product_type pt on p.product_type_id = pt.id
+		where p.id =
+		#{productId}
+		),
+		c.product_type_list
+		)
+	</select>
+
+	<select id="getMaxAmountByUserId" resultMap="CouponUserDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.CouponUserQuery">
+		select
+		cu.id , cu.gmt_create , cu.user_id ,
+		c.id as coupon_id , c.type ,
+		c.bonus_type , c.name ,
+		c.amount , c.limit_price , c.limit_days
+		,c.trigger_condition ,
+		c.product_type_list ,
+		cu.gmt_validity_start ,
+		cu.gmt_validity_end , cu.gmt_use , cu.status
+		from t_coupon_user cu
+		left
+		join t_coupon c on cu.coupon_id = c.id
+		where cu.user_id = #{userId} and
+		cu.deleted_flag = 0 and cu.status =
+		'unused' and cu.gmt_validity_end <![CDATA[ >= ]]>
+		now()
+		order by c.amount desc
+		limit 0,1
+	</select>
+
+	<select id="getTotalAmountByUserId"
+		parameterType="com.ruixun.sincfin.domain.query.CouponUserQuery"
+		resultType="DECIMAL">
+		select
+		IFNULL(sum(c.amount),0)
+		from t_coupon_user cu
+		left join
+		t_coupon c on cu.coupon_id = c.id
+		where cu.user_id =#{userId} and
+		cu.deleted_flag = 0 and cu.status = 'unused'
+		and cu.gmt_validity_end >=
+		now()
+	</select>
+
+	<update id="updateStatusExpired">
+		update t_coupon_user
+		set status = 'expired'
+		where
+		status = 'unused' and gmt_validity_end &lt;= now()
+	</update>
+
+</mapper>

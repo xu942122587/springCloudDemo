@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.account.mapper.AccountRechargeMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.AccountRechargeEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="recharge_num" property="rechargeNum"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="account_id" property="accountId"
+			jdbcType="BIGINT" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="user_bank_id" property="userBankId"
+			jdbcType="BIGINT" />
+		<result column="bank_name" property="bankName"
+			jdbcType="VARCHAR" />
+		<result column="bank_card_no" property="bankCardNo"
+			jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="fuiou_order_id" property="fuiouOrderId"
+			jdbcType="VARCHAR" />
+		<result column="fuiou_sign_pay" property="fuiouSignPay"
+			jdbcType="VARCHAR" />
+		<result column="fuiou_code" property="fuiouCode"
+			jdbcType="VARCHAR" />
+		<result column="fuiou_msg" property="fuiouMsg"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag,recharge_num,
+		user_id,
+		account_id, amount, user_bank_id,
+		bank_name, bank_card_no,
+		type, status , fuiou_order_id ,fuiou_sign_pay
+		,fuiou_code , fuiou_msg
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_recharge
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountRechargeEntity">
+		insert into t_account_recharge (id, gmt_create,
+		gmt_modified,
+		deleted_flag, recharge_num , user_id, account_id,
+		amount,
+		user_bank_id, bank_name,
+		bank_card_no, type, status ,fuiou_order_id
+		,fuiou_sign_pay ,fuiou_code , fuiou_msg
+		)
+		values (#{id,jdbcType=BIGINT},
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT},
+		#{rechargeNum,jdbcType=VARCHAR},#{userId,jdbcType=BIGINT},
+		#{accountId,jdbcType=BIGINT},
+		#{amount,jdbcType=BIGINT},
+		#{userBankId,jdbcType=BIGINT}, #{bankName,jdbcType=VARCHAR},
+		#{bankCardNo,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{fuiouOrderId,jdbcType=VARCHAR},#{fuiouSignPay,jdbcType=VARCHAR},#{fuiouCode,jdbcType=VARCHAR},#{fuiouMsg,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountRechargeEntity">
+		insert into t_account_recharge
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="rechargeNum != null">
+				recharge_num,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="userBankId != null">
+				user_bank_id,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankCardNo != null">
+				bank_card_no,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="fuiouOrderId != null">
+				fuiou_order_id,
+			</if>
+			<if test="fuiouSignPay != null">
+				fuiou_sign_pay,
+			</if>
+			<if test="fuiouCode != null">
+				fuiou_code,
+			</if>
+			<if test="fuiouMsg != null">
+				fuiou_msg,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="rechargeNum != null">
+				#{rechargeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="userBankId != null">
+				#{userBankId,jdbcType=BIGINT},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCardNo != null">
+				#{bankCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouOrderId != null">
+				#{fuiouOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouSignPay != null">
+				#{fuiouSignPay,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouCode != null">
+				#{fuiouCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouMsg != null">
+				#{fuiouMsg,jdbcType=VARCHAR},
+			</if>
+
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountRechargeEntity">
+		update t_account_recharge
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="rechargeNum != null">
+				recharge_num = #{rechargeNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="accountId != null">
+				account_id = #{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="userBankId != null">
+				user_bank_id = #{userBankId,jdbcType=BIGINT},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCardNo != null">
+				bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+
+			<if test="fuiouOrderId != null">
+				fuiou_order_id = #{fuiouOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouSignPay != null">
+				fuiou_sign_pay = #{fuiouSignPay,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouCode != null">
+				fuiou_code = #{fuiouCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fuiouMsg != null">
+				fuiou_msg = #{fuiouMsg,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountRechargeEntity">
+		update t_account_recharge
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		recharge_num =
+		#{rechargeNum,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=BIGINT},
+		account_id = #{accountId,jdbcType=BIGINT},
+		amount =
+		#{amount,jdbcType=BIGINT},
+		user_bank_id =
+		#{userBankId,jdbcType=BIGINT},
+		bank_name =
+		#{bankName,jdbcType=VARCHAR},
+		bank_card_no =
+		#{bankCardNo,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		status
+		= #{status,jdbcType=VARCHAR},
+		fuiou_order_id =
+		#{fuiouOrderId,jdbcType=VARCHAR},
+		fuiou_sign_pay =
+		#{fuiouSignPay,jdbcType=VARCHAR},
+		fuiou_code =
+		#{fuiouCode,jdbcType=VARCHAR},
+		fuiou_msg = #{fuiouMsg,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_recharge
+		where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+
+	<select id="listByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.AccountRechargeDto"
+		parameterType="com.ruixun.sincfin.domain.query.AccountRechargeQuery">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_recharge
+		where deleted_flag = 0
+		<if test="type != null and type != ''">
+			and type = #{type}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="excludeStatus != null and excludeStatus != ''">
+			and status != #{excludeStatus}
+		</if>
+
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+		<if test="gmtStartCreate != null">
+			and gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and gmt_create &lt; #{gmtEndCreate}
+		</if>
+		order by gmt_create desc
+	</select>
+
+	<select id="listManagerByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.AccountRechargeDto"
+		parameterType="com.ruixun.sincfin.domain.query.AccountRechargeQuery">
+		select ar.id, ar.gmt_create, ar.user_id, ar.account_id, ar.amount,
+		ar.bank_name, ar.bank_card_no, ar.type, ar.status, u.real_name as
+		user_real_name,
+		u.mobile as user_mobile
+		from t_account_recharge ar
+		left
+		join t_user u on ar.user_id = u.id
+		where ar.deleted_flag = 0
+		<if test="type != null and type != ''">
+			and ar.type = #{type}
+		</if>
+		<if test="status != null and status != ''">
+			and ar.status = #{status}
+		</if>
+		<if test="userId != null">
+			and ar.user_id = #{userId}
+		</if>
+		<if test="gmtStartCreate != null">
+			and ar.gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and ar.gmt_create &lt; #{gmtEndCreate}
+		</if>
+		<if test="userRealName != null and userRealName != ''">
+			and u.real_name = #{userRealName}
+		</if>
+		<if test="userMobile != null and userMobile != ''">
+			and u.mobile = #{userMobile}
+		</if>
+		order by ar.id desc
+	</select>
+
+	<select id="getByRechargeNum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_recharge
+		where deleted_flag = 0 and recharge_num =
+		#{rechargeNum,jdbcType=BIGINT}
+	</select>
+
+	<select id="listByStatus" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_recharge
+		where deleted_flag = 0 and status =
+		#{status,jdbcType=BIGINT}
+	</select>
+	<select id="selectChargeCount" resultType="java.lang.Integer"
+		parameterType="java.lang.Long">
+		select
+		count(1)
+		from t_account_recharge
+		where user_id
+		=#{userId} AND status='success'
+	</select>
+
+
+
+
+</mapper>

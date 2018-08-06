@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.basic.mapper.BankMapper" >
+  <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.BankEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="limit_single" property="limitSingle" jdbcType="BIGINT" />
+    <result column="limit_day" property="limitDay" jdbcType="BIGINT" />
+    <result column="limit_month" property="limitMonth" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, deleted_flag, name, alias ,code, icon, limit_single, limit_day, 
+    limit_month, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bank
+    where deleted_flag = 0 and id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ruixun.sincfin.domain.entity.BankEntity" >
+    insert into t_bank (id, gmt_create, gmt_modified, 
+      deleted_flag, name, alias , code , icon ,
+      limit_single, limit_day, limit_month, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{name,jdbcType=VARCHAR},#{alias,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{limitSingle,jdbcType=BIGINT}, #{limitDay,jdbcType=BIGINT}, #{limitMonth,jdbcType=BIGINT}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.BankEntity"
+    useGeneratedKeys="true" keyProperty="id">
+    insert into t_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="deletedFlag != null" >
+        deleted_flag,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="limitSingle != null" >
+        limit_single,
+      </if>
+      <if test="limitDay != null" >
+        limit_day,
+      </if>
+      <if test="limitMonth != null" >
+        limit_month,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="limitSingle != null" >
+        #{limitSingle,jdbcType=BIGINT},
+      </if>
+      <if test="limitDay != null" >
+        #{limitDay,jdbcType=BIGINT},
+      </if>
+      <if test="limitMonth != null" >
+        #{limitMonth,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.BankEntity" >
+    update t_bank
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="limitSingle != null" >
+        limit_single = #{limitSingle,jdbcType=BIGINT},
+      </if>
+      <if test="limitDay != null" >
+        limit_day = #{limitDay,jdbcType=BIGINT},
+      </if>
+      <if test="limitMonth != null" >
+        limit_month = #{limitMonth,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.BankEntity" >
+    update t_bank
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      limit_single = #{limitSingle,jdbcType=BIGINT},
+      limit_day = #{limitDay,jdbcType=BIGINT},
+      limit_month = #{limitMonth,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByCondition" resultType="com.ruixun.sincfin.domain.dto.BankDto"
+          parameterType="com.ruixun.sincfin.domain.query.BankQuery" >
+    select
+      <include refid="Base_Column_List" />
+    from t_bank
+    where deleted_flag = 0
+    <if test="name != null and name != ''">
+      and name = #{name}
+    </if>
+    <if test="status != null and status != ''">
+      and status = #{status}
+    </if>
+    <if test="codes != null and codes.size > 0">
+      and code in
+      <foreach collection="codes" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    order by id desc
+  </select>
+  
+  <select id="getBankByBankName" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bank
+    where deleted_flag = 0
+    	and ( name like CONCAT('%',#{bankName},'%') or FIND_IN_SET(#{bankName},alias) )
+  </select>
+  
+  
+  <select id="getBankByCode" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bank
+    where deleted_flag = 0 and code = #{bankCode}
+  </select>
+
+</mapper>

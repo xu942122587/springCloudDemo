@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.biz.module.user.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.UserEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="deleted_flag" property="deletedFlag" jdbcType="BIT"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="real_name_auth" property="realNameAuth" jdbcType="VARCHAR"/>
+        <result column="id_card_no" property="idCardNo" jdbcType="VARCHAR"/>
+        <result column="device_type" property="deviceType" jdbcType="VARCHAR"/>
+        <result column="mobile_province_code" property="mobileProvinceCode" jdbcType="VARCHAR"/>
+        <result column="mobile_city_code" property="mobileCityCode" jdbcType="VARCHAR"/>
+        <result column="mobile_province_name" property="mobileProvinceName" jdbcType="VARCHAR"/>
+        <result column="mobile_city_name" property="mobileCityName" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="VARCHAR"/>
+        <result column="first_investment_flag" property="firstInvestmentFlag" jdbcType="BIT"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+        <result column="inviter_id" property="inviterId" jdbcType="BIGINT"/>
+        <result column="risk_type" property="riskType" jdbcType="INTEGER"/>
+        <result column="account_type" property="accountType" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, gmt_create, gmt_modified, deleted_flag, mobile, real_name, real_name_auth, id_card_no, 
+    device_type, mobile_province_code, mobile_city_code, mobile_province_name, mobile_city_name, 
+    level, first_investment_flag, password, salt, channel_id, inviter_id, risk_type, account_type, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <insert id="insert"  useGeneratedKeys="true" keyProperty="id" parameterType="com.ruixun.sincfin.domain.entity.UserEntity">
+    insert into t_user (id, gmt_create, gmt_modified, 
+      deleted_flag, mobile, real_name, 
+      real_name_auth, id_card_no, device_type, 
+      mobile_province_code, mobile_city_code, mobile_province_name, 
+      mobile_city_name, level, first_investment_flag, password,
+      salt, channel_id, inviter_id, 
+      risk_type, account_type, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{deletedFlag,jdbcType=BIT}, #{mobile,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{realNameAuth,jdbcType=VARCHAR}, #{idCardNo,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+      #{mobileProvinceCode,jdbcType=VARCHAR}, #{mobileCityCode,jdbcType=VARCHAR}, #{mobileProvinceName,jdbcType=VARCHAR}, 
+      #{mobileCityName,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{firstInvestmentFlag,jdbcType=BIT}, #{password,jdbcType=VARCHAR},
+      #{salt,jdbcType=VARCHAR}, #{channelId,jdbcType=BIGINT}, #{inviterId,jdbcType=BIGINT}, 
+      #{riskType,jdbcType=INTEGER}, #{accountType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective"   useGeneratedKeys="true" keyProperty="id" parameterType="com.ruixun.sincfin.domain.entity.UserEntity">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="deletedFlag != null">
+                deleted_flag,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="realNameAuth != null">
+                real_name_auth,
+            </if>
+            <if test="idCardNo != null">
+                id_card_no,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="mobileProvinceCode != null">
+                mobile_province_code,
+            </if>
+            <if test="mobileCityCode != null">
+                mobile_city_code,
+            </if>
+            <if test="mobileProvinceName != null">
+                mobile_province_name,
+            </if>
+            <if test="mobileCityName != null">
+                mobile_city_name,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="firstInvestmentFlag != null">
+                first_investment_flag,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="channelId != null">
+                channel_id,
+            </if>
+            <if test="inviterId != null">
+                inviter_id,
+            </if>
+            <if test="riskType != null">
+                risk_type,
+            </if>
+            <if test="accountType != null">
+                account_type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedFlag != null">
+                #{deletedFlag,jdbcType=BIT},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="realNameAuth != null">
+                #{realNameAuth,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNo != null">
+                #{idCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileProvinceCode != null">
+                #{mobileProvinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileCityCode != null">
+                #{mobileCityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileProvinceName != null">
+                #{mobileProvinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileCityName != null">
+                #{mobileCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="firstInvestmentFlag != null">
+                #{firstInvestmentFlag,jdbcType=BIT},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                #{channelId,jdbcType=BIGINT},
+            </if>
+            <if test="inviterId != null">
+                #{inviterId,jdbcType=BIGINT},
+            </if>
+            <if test="riskType != null">
+                #{riskType,jdbcType=INTEGER},
+            </if>
+            <if test="accountType != null">
+                #{accountType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.UserEntity">
+        update t_user
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedFlag != null">
+                deleted_flag = #{deletedFlag,jdbcType=BIT},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="realNameAuth != null">
+                real_name_auth = #{realNameAuth,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNo != null">
+                id_card_no = #{idCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                device_type = #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileProvinceCode != null">
+                mobile_province_code = #{mobileProvinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileCityCode != null">
+                mobile_city_code = #{mobileCityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileProvinceName != null">
+                mobile_province_name = #{mobileProvinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileCityName != null">
+                mobile_city_name = #{mobileCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="firstInvestmentFlag != null">
+                first_investment_flag = #{firstInvestmentFlag,jdbcType=BIT},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                channel_id = #{channelId,jdbcType=BIGINT},
+            </if>
+            <if test="inviterId != null">
+                inviter_id = #{inviterId,jdbcType=BIGINT},
+            </if>
+            <if test="riskType != null">
+                risk_type = #{riskType,jdbcType=INTEGER},
+            </if>
+            <if test="accountType != null">
+                account_type = #{accountType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ruixun.sincfin.domain.entity.UserEntity">
+    update t_user
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      deleted_flag = #{deletedFlag,jdbcType=BIT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      real_name_auth = #{realNameAuth,jdbcType=VARCHAR},
+      id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      mobile_province_code = #{mobileProvinceCode,jdbcType=VARCHAR},
+      mobile_city_code = #{mobileCityCode,jdbcType=VARCHAR},
+      mobile_province_name = #{mobileProvinceName,jdbcType=VARCHAR},
+      mobile_city_name = #{mobileCityName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      first_investment_flag = #{firstInvestmentFlag,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=BIGINT},
+      inviter_id = #{inviterId,jdbcType=BIGINT},
+      risk_type = #{riskType,jdbcType=INTEGER},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="getByMobile" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where deleted_flag = 0 and mobile = #{mobile}
+    </select>
+
+    <select id="listManagerByCondition" resultType="com.ruixun.sincfin.domain.dto.UserDto"
+            parameterType="com.ruixun.sincfin.domain.query.UserQuery">
+        select u.id, u.gmt_create, u.mobile, u.real_name, u.real_name_auth, u.id_card_no,
+            u.device_type, u.mobile_province_code, u.mobile_city_code, u.mobile_province_name, u.mobile_city_name,
+            u.level, ifnull(o.id, 0) as first_investment_flag, u.channel_id,l.`name` channel_name, u.inviter_id, u.risk_type, u.account_type, u.status,
+            a.wallet_balance, a.current_investment_amount
+        from t_user u
+          left join t_account a on u.id = a.user_id
+          left join (select o.user_id, min(o.id) as id
+              from t_order o where (o.status = 'payment_success' or o.status = 'repayment')
+              group by o.user_id
+            ) o on o.user_id = u.id
+					LEFT JOIN t_channel l on l.id=u.channel_id
+        where u.deleted_flag = 0
+        <if test="mobile != null and mobile != ''">
+            and u.mobile = #{mobile}
+        </if>
+        <if test="realName != null and realName != ''">
+            and u.real_name = #{realName}
+        </if>
+        <if test="idCardNo != null and idCardNo != ''">
+            and u.id_card_no = #{idCardNo}
+        </if>
+        <if test="firstInvestmentFlag != null">
+            <if test="firstInvestmentFlag == true">
+                and o.id is not null
+            </if>
+            <if test="firstInvestmentFlag == false">
+                and o.id is null
+            </if>
+        </if>
+        <if test="realNameAuth != null and realNameAuth != ''">
+            and u.real_name_auth = #{realNameAuth}
+        </if>
+        <if test="status != null and status != ''">
+            and u.status = #{status}
+        </if>
+        <if test="level != null and level != ''">
+            and u.level = #{level}
+        </if>
+        <if test="gmtStartCreate != null">
+            and u.gmt_create >= #{gmtStartCreate}
+        </if>
+        <if test="gmtEndCreate != null">
+            and u.gmt_create &lt; #{gmtEndCreate}
+        </if>
+        <if test="channelId != null">
+            and u.channel_id = #{channelId}
+        </if>
+        <if test="accountType != null and accountType != ''">
+            and u.account_type = #{accountType}
+        </if>
+        order by u.id desc
+    </select>
+    
+    <select id="isNewUser" resultType="boolean">
+        select
+        	if(count(id)>=1,0,1)
+        from t_order
+        where user_id = #{userId} and status in('payment_success','repayment')
+    </select>
+    
+    
+    <select id="getByIdCord" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where deleted_flag = 0 and id_card_no = #{idCord}
+    </select>
+    
+    <update id="updateRiskTest" parameterType="com.ruixun.sincfin.domain.entity.UserEntity">
+	    update t_user
+	    set risk_type = #{riskType,jdbcType=INTEGER}
+	    where id = #{userId,jdbcType=BIGINT}
+	</update>
+	
+	<select id="listInvitationRecord" resultType="com.ruixun.sincfin.domain.dto.InvitationRecordDto" parameterType="com.ruixun.sincfin.domain.query.UserQuery">
+        select
+			distinct  u.mobile inviter ,(select if(count(o.id)>=1,1,0) from t_order o where o.user_id = u.id and o.`status` in ('payment_success','repayment')) invested
+		from t_user u
+		where u.deleted_flag = 0 and u.inviter_id = #{id}
+		group by u.id
+    </select>
+
+    <update id="updateFirstInvestmentByTask">
+        update t_user u inner join (
+            select o.user_id, o.gmt_create from (
+                    select o.user_id, min(o.id) as order_id
+                    from t_order o
+                        left join t_user u on u.id = o.user_id
+                    where u.first_investment_flag = 0
+                        and (o.status = 'payment_success' or o.status = 'repayment')
+                    group by o.user_id) t
+                left join t_order o on t.order_id = o.id
+            ) t on u.id = t.user_id
+        set first_investment_flag = 1, gmt_first_investment = t.gmt_create
+        where u.first_investment_flag = 0;
+    </update>
+    <select id="getRegUserCountsByDate" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(*)
+	FROM t_user t
+	WHERE DATE_FORMAT(t.`gmt_create`,'%Y-%m-%d')=#{date}
+    </select>
+     <select id="getRegUserAndInvestmentCountsByDate" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(*)
+	FROM t_user t
+	WHERE DATE_FORMAT(t.`gmt_create`,'%Y-%m-%d')=#{date} AND DATE_FORMAT(t.`gmt_first_investment`,'%Y-%m-%d')=#{date}
+    </select>
+</mapper>

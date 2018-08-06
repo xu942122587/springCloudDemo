@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" 
+		/> -->
+	<context id="oracleGenerator" targetRuntime="MyBatis3">
+		<plugin
+			type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<!-- Pagination -->
+		<!-- 取消注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 配置连接数据信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://118.31.22.118:3306/sincfin?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+			userId="root" password="piaodada@1" />
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 配置自动生成的Model的保存路径与其它参数 -->
+		<javaModelGenerator
+			targetPackage="com.ruixun.sincfin.domain.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 配置自动生成的Mappper.xml映射的保存路径与其它参数 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="../sincfin-modules/sincfin-biz/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 配置自动生成的Mappper.java接口的保存路径与其它参数 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.ruixun.sincfin.biz.mapper"
+			targetProject="../sincfin-modules/sincfin-biz/src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- <table tableName="t_user" domainObjectName="User" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_account" domainObjectName="Account" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_user_bank" domainObjectName="UserBank" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_user_bank_change" domainObjectName="UserBankChange" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_financing_user" domainObjectName="FinancingUserEntity" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_contract_template" domainObjectName="ContractTemplate" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_contract" domainObjectName="Contract" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_product" domainObjectName="Product" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_account_recharge" domainObjectName="AccountRecharge" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_order" domainObjectName="Order" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_order_product" domainObjectName="OrderProduct" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_order_coupon" domainObjectName="OrderCoupon" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_account_repayment" domainObjectName="AccountRepayment" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_financing_user_repayment" domainObjectName="FinancingUserRepaymentEntity" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> </table> <table tableName="t_account_withdraw" domainObjectName="AccountWithdraw" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> <table tableName="t_account_money_record" domainObjectName="AccountMoneyRecord" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> <table tableName="t_product_label" domainObjectName="ProductLabel" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> <table tableName="t_product_type" domainObjectName="ProductType" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> <table tableName="t_bank" domainObjectName="Bank" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_app_version" domainObjectName="AppVersion" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_feedback" domainObjectName="Feedback" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_channel" domainObjectName="Channel" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_return_visit" domainObjectName="ReturnVisit" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_coupon" domainObjectName="Coupon" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_coupon_user" domainObjectName="CouponUser" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_advertisement" domainObjectName="Advertisement" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_news" domainObjectName="News" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_public_notice" 
+			domainObjectName="PublicNotice" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_message_sms_record" 
+			domainObjectName="MessageSmsRecord" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_message_push_record" 
+			domainObjectName="MessagePushRecord" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_message_push" 
+			domainObjectName="MessagePush" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_message_template" 
+			domainObjectName="MessageTemplate" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_user" 
+			domainObjectName="ManagerUser" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_menu" 
+			domainObjectName="ManagerMenu" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_role" 
+			domainObjectName="ManagerRole" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_user_role" 
+			domainObjectName="ManagerUserRole" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_permission" 
+			domainObjectName="ManagerPermission" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_role_permission" 
+			domainObjectName="ManagerRolePermission" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_manager_access_log" 
+			domainObjectName="ManagerAccessLog" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByPrimaryKey="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> </table> <table tableName="t_district" domainObjectName="District" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> <table tableName="t_file_object" domainObjectName="FileObject" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_statistics_channel" domainObjectName="StatisticsChannel" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> <table 
+			tableName="t_statistics_bill" domainObjectName="StatisticsBill" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"> </table> -->
+
+		<table tableName="t_financing_user"
+			domainObjectName="FinancingUserEntity" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByPrimaryKey="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<!-- <table tableName="t_order_coupon" domainObjectName="OrderCouponEntity" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> -->
+
+		<!-- <table tableName="t_financing_user_repayment" domainObjectName="FinancingUserRepayment" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByPrimaryKey="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			</table> -->
+
+	</context>
+
+</generatorConfiguration>

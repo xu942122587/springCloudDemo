@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.order.mapper.OrderMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.OrderEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="order_num" property="orderNum"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="user_recharge_id" property="userRechargeId"
+			jdbcType="BIGINT" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="interest" property="interest" jdbcType="BIGINT" />
+		<result column="payment_amount" property="paymentAmount"
+			jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap id="OrderDtoMap"
+		type="com.ruixun.sincfin.domain.dto.OrderDto">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="order_num" property="orderNum"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="mobile" property="userMobile"
+			jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="payment_amount" property="paymentAmount"
+			jdbcType="BIGINT" />
+		<result column="interest" property="interest" jdbcType="BIGINT" />
+
+		<result column="product_id" property="productId"
+			jdbcType="BIGINT" />
+		<result column="product_title" property="productTitle"
+			jdbcType="VARCHAR" />
+		<result column="time_limit" property="timeLimit"
+			jdbcType="INTEGER" />
+		<result column="total_interest_rate"
+			property="totalInterestRate" jdbcType="DECIMAL" />
+		<result column="subsidy_interest_rate"
+			property="subsidyInterestRate" jdbcType="DECIMAL" />
+		<result column="gmt_value_date" property="gmtValueDate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_expiration_date"
+			property="gmtExpirationDate" jdbcType="TIMESTAMP" />
+		<result column="gmt_sell_out" property="gmtSellOut"
+			jdbcType="TIMESTAMP" />
+
+		<result column="coupon_user_id" property="couponUserId"
+			jdbcType="BIGINT" />
+		<result column="coupon_type" property="couponType"
+			jdbcType="VARCHAR" />
+		<result column="bonus_amount" property="bonusAmount"
+			jdbcType="BIGINT" />
+
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, order_num,
+		user_id, user_recharge_id, amount, interest, payment_amount, status
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_order
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderEntity">
+		insert into t_order (id, gmt_create, gmt_modified,
+		deleted_flag, order_num, user_id, user_recharge_id, amount,
+		interest,
+		payment_amount, status
+		)
+		values (#{id,jdbcType=BIGINT},
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{orderNum,jdbcType=VARCHAR},
+		#{userId,jdbcType=BIGINT}, #{userRechargeId,jdbcType=BIGINT},
+		#{amount,jdbcType=BIGINT},
+		#{interest,jdbcType=BIGINT},
+		#{paymentAmount,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderEntity">
+		insert into t_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="orderNum != null">
+				order_num,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="userRechargeId != null">
+				user_recharge_id,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="paymentAmount != null">
+				payment_amount,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="userRechargeId != null">
+				#{userRechargeId,jdbcType=BIGINT},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=BIGINT},
+			</if>
+			<if test="paymentAmount != null">
+				#{paymentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderEntity">
+		update t_order
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="orderNum != null">
+				order_num = #{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="userRechargeId != null">
+				user_recharge_id = #{userRechargeId,jdbcType=BIGINT},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=BIGINT},
+			</if>
+			<if test="paymentAmount != null">
+				payment_amount = #{paymentAmount,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.OrderEntity">
+		update t_order
+		set gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag =
+		#{deletedFlag,jdbcType=BIT},
+		order_num = #{orderNum,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=BIGINT},
+		user_recharge_id =
+		#{userRechargeId,jdbcType=BIGINT},
+		amount = #{amount,jdbcType=BIGINT},
+		interest = #{interest,jdbcType=BIGINT},
+		payment_amount =
+		#{paymentAmount,jdbcType=BIGINT},
+		status = #{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_order
+		where status = 'payment_success' and user_id =
+		#{userId,jdbcType=BIGINT}
+		limit 1
+	</select>
+
+	<select id="getByOrderNum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_order
+		where deleted_flag = 0 and order_num = #{orderNum}
+	</select>
+
+	<select id="getOrderByProduct" resultMap="OrderDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.OrderQuery">
+		select
+		o.id , o.order_num , o.user_id , o.amount ,
+		o.interest , u.mobile ,
+		op.product_id ,
+		o.gmt_create
+		from t_order o
+		left
+		join t_user u on u.id = o.user_id
+		left join t_order_product op on
+		op.order_num = o.order_num
+		where o.status =
+		'payment_success' and
+		op.product_id = #{productId}
+		order by
+		o.gmt_create desc
+	</select>
+
+	<select id="getOrderByUser" resultMap="OrderDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.OrderQuery">
+		select
+		o.id , o.order_num , o.user_id , u.mobile ,
+		o.amount ,
+		o.payment_amount , o.interest ,
+		opp.product_id , opp.product_title ,
+		opp.time_limit , opp.total_interest_rate ,
+		opp.subsidy_interest_rate ,
+		opp.gmt_value_date , opp.gmt_expiration_date ,
+		oc.coupon_id
+		coupon_user_id , oc.coupon_type , oc.bonus_amount ,
+		o.status ,
+		o.gmt_create
+		from t_order o
+		left join t_user u on u.id = o.user_id
+		left
+		join (
+		select op.order_num , op.product_id , p.title product_title,
+		p.time_limit ,
+		op.total_interest_rate , op.subsidy_interest_rate,
+		p.gmt_value_date , p.gmt_expiration_date
+		from t_order_product op
+		left
+		join t_product p on op.product_id = p.id
+		) opp on opp.order_num =
+		o.order_num
+		left join t_order_coupon oc on oc.order_num = o.order_num
+		where o.user_id = #{userId}
+
+		<if test="status != null">
+			<if test="status == 'financing'">
+				and o.status = 'payment_success' and opp.gmt_value_date
+				is null
+			</if>
+			<if test="status == 'interestIn'">
+				and o.status = 'payment_success' and opp.gmt_value_date
+				is not null
+			</if>
+			<if test="status == 'repayment'">
+				and o.status = 'repayment'
+			</if>
+			<if test="status == 'failure'">
+				and o.status = 'failure'
+			</if>
+		</if>
+		order by o.gmt_create desc
+	</select>
+
+	<select id="getOrderById" resultMap="OrderDtoMap"
+		parameterType="com.ruixun.sincfin.domain.query.OrderQuery">
+		select o.id , o.order_num , o.user_id , u.mobile ,
+		o.amount ,
+		o.payment_amount , o.interest , opp.product_id ,
+		opp.product_title ,
+		opp.time_limit ,opp.total_interest_rate ,
+		opp.subsidy_interest_rate
+		,opp.gmt_sell_out, opp.gmt_value_date ,
+		opp.gmt_expiration_date ,
+		oc.coupon_id coupon_user_id , oc.coupon_type
+		, oc.bonus_amount ,
+		o.status , o.gmt_create , o.gmt_modified from
+		t_order o left join
+		t_user u on u.id = o.user_id left join ( select
+		op.order_num ,
+		op.product_id , p.title product_title, p.time_limit
+		,op.total_interest_rate , op.subsidy_interest_rate,p.gmt_sell_out,
+		p.gmt_value_date, p.gmt_expiration_date from t_order_product op left
+		join t_product p on op.product_id = p.id ) opp on opp.order_num =
+		o.order_num left join t_order_coupon oc on oc.order_num = o.order_num
+		where o.id =#{id}
+	</select>
+
+	<select id="listManagerByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.OrderDto"
+		parameterType="com.ruixun.sincfin.domain.query.OrderQuery">
+		select
+		o.id, o.gmt_create, o.order_num, o.user_id, a.id as account_id,
+		u.real_name as user_real_name, u.mobile as user_mobile, op.product_id,
+		p.title as product_title, p.total_interest_rate, p.time_limit,
+		p.value_date_method,
+		p.gmt_value_date, p.gmt_expiration_date,
+		p.repayment_type,
+		o.amount, o.interest, o.payment_amount, o.status,
+		oc.bonus_amount, c.type as
+		coupon_type,
+		u.channel_id,
+		u.inviter_id,
+		u.device_type,
+
+		tc.`name` as channel_name,
+
+		iu.mobile inviter_mobile
+
+		from
+		t_order o
+		left join t_user u
+		on u.id = o.user_id
+		left join t_account a
+		on
+		u.id = a.user_id
+		left join
+		t_order_product op on o.order_num =
+		op.order_num
+		left join
+		t_order_coupon oc on o.order_num = oc.order_num
+		left join t_product p
+		on p.id = op.product_id
+		left join t_coupon c on
+		c.id = oc.coupon_id
+
+		LEFT JOIN t_channel tc on tc.id=u.channel_id
+
+		LEFT
+		JOIN t_user iu on iu.id=u.inviter_id
+		where o.deleted_flag = 0
+		<if test="userRealName != null and userRealName != ''">
+			and u.real_name = #{userRealName}
+		</if>
+		<if test="userMobile != null and userMobile != ''">
+			and u.mobile = #{userMobile}
+		</if>
+		<if test="userId != null">
+			and u.id = #{userId}
+		</if>
+		<if test="productId != null">
+			and op.product_id = #{productId}
+		</if>
+		<if test="productTitle != null and productTitle != ''">
+			and p.title = #{productTitle}
+		</if>
+		<if test="status != null and status != ''">
+			and o.status = #{status}
+		</if>
+		<if test="gmtStartCreate != null">
+			and o.gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and o.gmt_create &lt; #{gmtEndCreate}
+		</if>
+		<if test="gmtStartExpirationDate != null">
+			and op.gmt_expiration_date >= #{gmtStartExpirationDate}
+		</if>
+		<if test="gmtEndExpirationDate != null">
+			and op.gmt_expiration_date &lt; #{gmtEndExpirationDate}
+		</if>
+		<if test="userAccountType != null and userAccountType != ''">
+			and u.account_type = #{userAccountType}
+		</if>
+		<if test="deviceType != null and deviceType != ''">
+			and u.device_type = #{deviceType}
+		</if>
+		<if test="channelId != null and channelId != ''">
+			and u.channel_id = #{channelId}
+		</if>
+		<if test="inviterMobile != null and inviterMobile != ''">
+			and iu.mobile = #{inviterMobile}
+		</if>
+		order by o.id desc
+
+	</select>
+
+
+	<select id="countInvestmentUser" resultType="long">
+		select
+		count(o.user_id)
+		from t_order o
+		left join t_order_product op on
+		op.order_num = o.order_num
+		where
+		op.product_id = #{productId} and
+		o.status = 'payment_success'
+	</select>
+
+	<update id="updateRepayment">
+		update t_order o
+		left join t_order_product op on
+		o.order_num = op.order_num
+		set o.status =
+		'repayment'
+		where op.product_id
+		= #{productId}
+	</update>
+
+	<select id="getLastOrderByProductId"
+		resultType="com.ruixun.sincfin.domain.dto.OrderDto">
+		select o.id, o.gmt_create
+		from t_order o
+		left join
+		t_order_product op on o.order_num = op.order_num
+		where
+		o.deleted_flag =
+		0 and o.status = 'payment_success'
+		and op.product_id = #{productId}
+		order by o.gmt_create desc, o.id desc
+		limit 0,1
+	</select>
+
+	<select id="getFirstOrderByUserId"
+		resultType="com.ruixun.sincfin.domain.dto.OrderDto">
+		select o.id, o.gmt_create
+		from t_order o
+		where o.deleted_flag
+		= 0 and (o.status = 'payment_success' or o.status = 'repayment')
+		and
+		o.user_id = #{userId}
+		order by o.gmt_create asc, o.id asc
+		limit 0,1
+	</select>
+	<select id="getTotalInvestByUserId" resultType="DECIMAL"
+		parameterType="java.util.Map">
+		select
+		IFNULL(sum(b.amount)/100,0) money from
+		t_order_product a LEFT
+		JOIN
+		t_order b on a.order_num =b.order_num WHERE
+		1=1
+		AND a.user_id=#{userId}
+	</select>
+	<select id="getTotalInvestByUserIdAndPid" resultType="DECIMAL"
+		parameterType="java.util.Map">
+		select
+		IFNULL(sum(b.amount)/100,0) money from
+		t_order_product a LEFT
+		JOIN
+		t_order b on a.order_num =b.order_num WHERE
+		1=1
+		AND a.product_id=#{pid}
+		AND a.user_id=#{userId}
+
+	</select>
+	<select id="getInvestUserCountsByDate"
+		resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT COUNT(*)
+		FROM (
+		SELECT *
+		FROM t_order o
+		WHERE DATE_FORMAT(o.`gmt_create`,'%Y-%m-%d')=#{date} AND
+		o.status='payment_success'
+		GROUP BY o.user_id ) a
+	</select>
+	<select id="getInvestUserTotalNewUserAreaByDate"
+		resultType="java.lang.Long" parameterType="java.lang.String">
+		SELECT SUM(o.amount)
+		FROM t_order o
+		LEFT JOIN t_order_product
+		ON o.order_num=t_order_product.`order_num`
+		LEFT JOIN t_product
+		ON t_product.id=t_order_product.`product_id`
+		LEFT JOIN t_product_type
+		ON t_product_type.`id`=t_product.product_type_id
+		WHERE DATE_FORMAT(o.`gmt_create`,'%Y-%m-%d')=#{date} AND
+		t_product_type.`name`='新手' AND o.status='payment_success'
+	</select>
+	<select id="getReInvestUserTotalNewUserAreaByDate"
+		resultType="java.lang.Long" parameterType="java.lang.String">
+		SELECT SUM(o.amount)
+		FROM t_order o
+		LEFT JOIN t_order_product
+		ON o.order_num=t_order_product.`order_num`
+		LEFT JOIN t_product
+		ON t_product.id=t_order_product.`product_id`
+		LEFT JOIN t_product_type
+		ON t_product_type.`id`=t_product.product_type_id
+		WHERE DATE_FORMAT(o.`gmt_create`,'%Y-%m-%d')=#{date} AND
+		t_product_type.`name` !='新手' AND o.status='payment_success'
+	</select>
+	<select id="getReleaseAmountByDate" resultType="java.lang.Long"
+		parameterType="java.lang.String">
+		SELECT SUM(p.amount)
+		FROM t_product p
+		WHERE DATE_FORMAT(p.`gmt_release`,'%Y-%m-%d')=#{date} AND p.status in
+		('on_sale','interest','repayment','end')
+	</select>
+</mapper>

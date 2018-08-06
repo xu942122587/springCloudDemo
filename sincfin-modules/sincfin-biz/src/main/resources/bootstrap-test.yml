@@ -1,0 +1,16 @@
+server:
+  port: 9109
+
+# client discovery url
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1111/eureka
+spring:
+  application:
+    name: sincfin-biz-test
+  cloud:
+    config:
+      discovery:
+         enabled: true
+      label: test

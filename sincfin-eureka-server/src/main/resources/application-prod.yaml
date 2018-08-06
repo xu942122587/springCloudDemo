@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: sincfin-eureka-server
+  profiles: prod
+  boot:
+    admin:
+      client:
+        url: http://moniter.piaodadalicai.com
+server:
+  port: 1111
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://47.96.121.237:1111/eureka,http://47.96.237.44:1111/eureka,http://47.96.236.7:1111/eureka
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 4000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,refresh,health
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always

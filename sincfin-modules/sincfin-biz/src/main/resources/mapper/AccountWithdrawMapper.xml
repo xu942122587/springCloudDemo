@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.ruixun.sincfin.biz.module.account.mapper.AccountWithdrawMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ruixun.sincfin.domain.entity.AccountWithdrawEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="gmt_create" property="gmtCreate"
+			jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified"
+			jdbcType="TIMESTAMP" />
+		<result column="deleted_flag" property="deletedFlag"
+			jdbcType="BIT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="account_id" property="accountId"
+			jdbcType="BIGINT" />
+		<result column="user_bank_id" property="userBankId"
+			jdbcType="BIGINT" />
+		<result column="bank_name" property="bankName"
+			jdbcType="VARCHAR" />
+		<result column="bank_card_no" property="bankCardNo"
+			jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="BIGINT" />
+		<result column="gmt_audit" property="gmtAudit"
+			jdbcType="TIMESTAMP" />
+		<result column="auditor_id" property="auditorId"
+			jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gmt_create, gmt_modified, deleted_flag, user_id, account_id,
+		user_bank_id, bank_name,
+		bank_card_no, amount, gmt_audit, auditor_id, status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_withdraw
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountWithdrawEntity">
+		insert into t_account_withdraw (id, gmt_create, gmt_modified,
+		deleted_flag, user_id, account_id,
+		user_bank_id, bank_name, bank_card_no,
+		amount, gmt_audit, auditor_id,
+		status)
+		values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{deletedFlag,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT},
+		#{userBankId,jdbcType=BIGINT}, #{bankName,jdbcType=VARCHAR},
+		#{bankCardNo,jdbcType=VARCHAR},
+		#{amount,jdbcType=BIGINT}, #{gmtAudit,jdbcType=TIMESTAMP}, #{auditorId,jdbcType=BIGINT},
+		#{status,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountWithdrawEntity">
+		insert into t_account_withdraw
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="userBankId != null">
+				user_bank_id,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankCardNo != null">
+				bank_card_no,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="gmtAudit != null">
+				gmt_audit,
+			</if>
+			<if test="auditorId != null">
+				auditor_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="userBankId != null">
+				#{userBankId,jdbcType=BIGINT},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCardNo != null">
+				#{bankCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=BIGINT},
+			</if>
+			<if test="gmtAudit != null">
+				#{gmtAudit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditorId != null">
+				#{auditorId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountWithdrawEntity">
+		update t_account_withdraw
+		<set>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag = #{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="accountId != null">
+				account_id = #{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="userBankId != null">
+				user_bank_id = #{userBankId,jdbcType=BIGINT},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCardNo != null">
+				bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=BIGINT},
+			</if>
+			<if test="gmtAudit != null">
+				gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditorId != null">
+				auditor_id = #{auditorId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ruixun.sincfin.domain.entity.AccountWithdrawEntity">
+		update t_account_withdraw
+		set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+		deleted_flag = #{deletedFlag,jdbcType=BIT},
+		user_id = #{userId,jdbcType=BIGINT},
+		account_id = #{accountId,jdbcType=BIGINT},
+		user_bank_id = #{userBankId,jdbcType=BIGINT},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=BIGINT},
+		gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+		auditor_id = #{auditorId,jdbcType=BIGINT},
+		status = #{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_withdraw
+		where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+
+	<select id="listByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.AccountWithdrawDto"
+		parameterType="com.ruixun.sincfin.domain.query.AccountWithdrawQuery">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_withdraw
+		where deleted_flag = 0
+		<if test="idList != null and idList.size() > 0">
+			and id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+		<if test="userBankId != null">
+			and user_bank_id = #{userBankId}
+		</if>
+		<if test="gmtStartCreate != null">
+			and gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and gmt_create &lt; #{gmtEndCreate}
+		</if>
+		<if test="gmtStartAudit != null">
+			and gmt_audit >= #{gmtStartAudit}
+		</if>
+		<if test="gmtEndAudit != null">
+			and gmt_audit &lt; #{gmtEndAudit}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="statusList != null and statusList.size > 0">
+			and status in
+			<foreach collection="statusList" open="(" close=")"
+				item="item" separator=",">
+				#{item}
+			</foreach>
+		</if>
+		order by gmt_create desc
+	</select>
+
+	<select id="listManagerByCondition"
+		resultType="com.ruixun.sincfin.domain.dto.AccountWithdrawDto"
+		parameterType="com.ruixun.sincfin.domain.query.AccountWithdrawQuery">
+		select
+		aw.id, aw.gmt_create, aw.user_id, aw.account_id, aw.bank_name,
+		aw.bank_card_no, aw.amount, aw.gmt_audit, aw.auditor_id, aw.status,
+		mu.user_name as auditor_user_name, u.real_name as user_real_name,
+		u.mobile as user_mobile
+		from t_account_withdraw aw
+		left join t_manager_user mu on aw.auditor_id = mu.id
+		left join t_user u on aw.user_id = u.id
+		where aw.deleted_flag = 0
+		<if test="idList != null and idList.size() > 0">
+			and aw.id in
+			<foreach collection="idList" open="(" close=")" item="idItem"
+				separator=",">
+				#{idItem}
+			</foreach>
+		</if>
+		<if test="userId != null">
+			and aw.user_id = #{userId}
+		</if>
+		<if test="userRealName != null and userRealName != ''">
+			and u.real_name like concat('%',#{userRealName},'%')
+		</if>
+		<if test="userMobile != null and userMobile != ''">
+			and u.mobile like concat('%',#{userMobile},'%')
+		</if>
+		<if test="gmtStartCreate != null">
+			and aw.gmt_create >= #{gmtStartCreate}
+		</if>
+		<if test="gmtEndCreate != null">
+			and aw.gmt_create &lt; #{gmtEndCreate}
+		</if>
+		<if test="gmtStartAudit != null">
+			and aw.gmt_audit >= #{gmtStartAudit}
+		</if>
+		<if test="gmtEndAudit != null">
+			and aw.gmt_audit &lt; #{gmtEndAudit}
+		</if>
+		<if test="status != null and status != ''">
+			and aw.status = #{status}
+		</if>
+		order by aw.id desc
+	</select>
+
+	<update id="updatePass">
+		update t_account_withdraw
+		set status = 'pass', auditor_id = #{auditorId}, gmt_audit = now()
+		where deleted_flag = 0 and status = 'pending' and id in
+		<foreach collection="idList" open="(" close=")" item="idItem"
+			separator=",">
+			#{idItem}
+		</foreach>
+	</update>
+
+	<update id="updateReject">
+		update t_account_withdraw
+		set status = 'reject', auditor_id = #{auditorId}, gmt_audit = now()
+		where deleted_flag = 0 and status = 'pending' and id in
+		<foreach collection="idList" open="(" close=")" item="idItem"
+			separator=",">
+			#{idItem}
+		</foreach>
+	</update>
+
+	<update id="updateSuccess">
+		update t_account_withdraw
+		set status = 'success', auditor_id = #{auditorId}, gmt_audit = now()
+		where deleted_flag = 0 and status = 'pass' and id in
+		<foreach collection="idList" open="(" close=")" item="idItem"
+			separator=",">
+			#{idItem}
+		</foreach>
+	</update>
+
+	<select id="countWithdrawByDate" resultType="java.lang.Long">
+		select
+		count(id)
+		from t_account_withdraw
+		where user_id = #{userId} and deleted_flag = 0
+		and DATE_FORMAT(gmt_create,"%Y,%m,%d") = DATE_FORMAT(#{time},"%Y,%m,%d")
+	</select>
+
+
+	<select id="countTodayWithdraw" resultType="java.lang.Long">
+		select
+		count(id)
+		from t_account_withdraw
+		where user_id = #{userId} and deleted_flag = 0
+		and DATE_FORMAT(gmt_create,"%Y,%m,%d") = DATE_FORMAT(now(),"%Y,%m,%d")
+	</select>
+
+
+
+
+
+</mapper>

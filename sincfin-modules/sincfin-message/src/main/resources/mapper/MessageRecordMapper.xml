@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruixun.sincfin.message.mapper.MessageRecordMapper" >
+    <resultMap id="BaseResultMap" type="com.ruixun.sincfin.domain.entity.MessageRecordEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="channel" property="channel" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="users" property="users" jdbcType="VARCHAR" />
+        <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+        <result column="custom" property="custom" jdbcType="VARCHAR" />
+        <result column="platform" property="platform" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="created" property="created" jdbcType="TIMESTAMP" />
+        <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, type, channel, content, users, send_time, custom, platform, status, remark,
+    created, updated
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from t_message_record
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.ruixun.sincfin.domain.entity.MessageRecordEntity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_message_record
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="channel != null" >
+                channel,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="users != null" >
+                users,
+            </if>
+            <if test="sendTime != null" >
+                send_time,
+            </if>
+            <if test="custom != null" >
+                custom,
+            </if>
+            <if test="platform != null" >
+                platform,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="created != null" >
+                created,
+            </if>
+            <if test="updated != null" >
+                updated,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="type != null" >
+                #{type},
+            </if>
+            <if test="channel != null" >
+                #{channel},
+            </if>
+            <if test="content != null" >
+                #{content},
+            </if>
+            <if test="users != null" >
+                #{users},
+            </if>
+            <if test="sendTime != null" >
+                #{sendTime},
+            </if>
+            <if test="custom != null" >
+                #{custom},
+            </if>
+            <if test="platform != null" >
+                #{platform},
+            </if>
+            <if test="status != null" >
+                #{status},
+            </if>
+            <if test="remark != null" >
+                #{remark},
+            </if>
+            <if test="created != null" >
+                #{created},
+            </if>
+            <if test="updated != null" >
+                #{updated},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ruixun.sincfin.domain.entity.MessageRecordEntity" >
+        update t_message_record
+        <set >
+            <if test="type != null" >
+                type = #{type},
+            </if>
+            <if test="channel != null" >
+                channel = #{channel},
+            </if>
+            <if test="content != null" >
+                content = #{content},
+            </if>
+            <if test="users != null" >
+                users = #{users},
+            </if>
+            <if test="sendTime != null" >
+                send_time = #{sendTime},
+            </if>
+            <if test="custom != null" >
+                custom = #{custom},
+            </if>
+            <if test="platform != null" >
+                platform = #{platform},
+            </if>
+            <if test="status != null" >
+                status = #{status},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark},
+            </if>
+            <if test="created != null" >
+                created = #{created},
+            </if>
+            <if test="updated != null" >
+                updated = #{updated},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

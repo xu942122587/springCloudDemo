@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: sincfin-eureka-server
+  profiles: test
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:1112
+server:
+  port: 1111
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 4000
+#logging:
+#  level:
+#    root: DEBUG
+#  path: /alidata/logs/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,refresh,health
+  endpoint:
+    shutdown:
+      enabled: false
+    health:
+      show-details: always
