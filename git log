@@ -1,0 +1,30 @@
+[33mcommit f0fef5baddcd4bc25e999543809a3d6ef2f32691[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: beed8a1 6e3b3fb
+Author: xuhao <xuh@jinyundt.com>
+Date:   Mon Aug 6 14:21:15 2018 +0800
+
+    解决冲突
+
+[33mcommit beed8a1a38c65f48214a203735f033deac0fefa8[m
+Author: xuhao <xuh@jinyundt.com>
+Date:   Mon Aug 6 14:13:57 2018 +0800
+
+    添加测试内容
+
+[33mcommit 6e3b3fb439840587e89095cb91be5926123fec61[m[33m ([m[1;32mtest1[m[33m)[m
+Author: xuhao <xuh@jinyundt.com>
+Date:   Mon Aug 6 14:10:20 2018 +0800
+
+    修改内容
+
+[33mcommit ce8babc2e72b768a157f8fe5d8701fb89449fbee[m
+Author: xuhao <xuh@jinyundt.com>
+Date:   Mon Aug 6 14:05:59 2018 +0800
+
+    增加测试分支文件
+
+[33mcommit 44ec421aa0d18a0d750df2484a9dc4aa073d2cb8[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: xuhao <xuh@jinyundt.com>
+Date:   Mon Aug 6 11:35:52 2018 +0800
+
+    项目初始化
